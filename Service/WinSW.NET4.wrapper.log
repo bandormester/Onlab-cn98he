@@ -1,0 +1,45 @@
+2020-02-19 09:54:58,967 DEBUG - Starting WinSW in the CLI mode
+2020-02-19 09:54:59,774 INFO  - Installing the service with id 'ez-learner-service'
+2020-02-19 09:54:59,797 FATAL - WMI Operation failure: AccessDenied
+WMI.WmiException: AccessDenied
+   at WMI.WmiRoot.BaseHandler.CheckError(ManagementBaseObject result)
+   at WMI.WmiRoot.ClassHandler.Invoke(Object proxy, MethodInfo method, Object[] arguments)
+   at winsw.WrapperService.Run(String[] _args, ServiceDescriptor descriptor)
+   at winsw.WrapperService.Main(String[] args)
+2020-02-19 09:55:59,663 DEBUG - Starting WinSW in the CLI mode
+2020-02-19 09:55:59,944 INFO  - Installing the service with id 'ez-learner-service'
+2020-02-19 09:55:59,967 DEBUG - Completed. Exit code is 0
+2020-02-19 09:57:55,777 DEBUG - Starting WinSW in the service mode
+2020-02-19 09:57:55,919 INFO  - Starting java -jar F:\Android\Work\Onlab\Backend\Service\ez-learner-service.jar
+2020-02-19 09:57:55,959 INFO  - Started process 3832
+2020-02-19 09:57:55,970 DEBUG - Forwarding logs of the process System.Diagnostics.Process (java) to winsw.DefaultLogAppender
+2020-02-19 10:00:23,764 INFO  - Stopping ez-learner-service
+2020-02-19 10:00:23,772 DEBUG - ProcessKill 3832
+2020-02-19 10:00:23,906 INFO  - Found child process: 12740 Name: conhost.exe
+2020-02-19 10:00:23,947 INFO  - Stopping process 12740
+2020-02-19 10:00:23,956 INFO  - Send SIGINT 12740
+2020-02-19 10:00:24,131 WARN  - SIGINT to 12740 failed - Killing as fallback
+2020-02-19 10:00:24,142 INFO  - Stopping process 3832
+2020-02-19 10:00:24,149 INFO  - Send SIGINT 3832
+2020-02-19 10:00:24,156 WARN  - SIGINT to 3832 failed - Killing as fallback
+2020-02-19 10:00:24,161 INFO  - Finished ez-learner-service
+2020-02-19 10:00:24,168 DEBUG - Completed. Exit code is 0
+2020-02-19 10:00:32,434 DEBUG - Starting WinSW in the service mode
+2020-02-19 10:00:32,465 INFO  - Starting java -jar F:\Android\Work\Onlab\Backend\Service\ez-learner-service.jar
+2020-02-19 10:00:32,481 INFO  - Started process 9656
+2020-02-19 10:00:32,497 DEBUG - Forwarding logs of the process System.Diagnostics.Process (java) to winsw.DefaultLogAppender
+2020-02-19 10:37:43,350 INFO  - Stopping ez-learner-service
+2020-02-19 10:37:43,643 DEBUG - ProcessKill 9656
+2020-02-19 10:37:43,739 INFO  - Found child process: 7284 Name: conhost.exe
+2020-02-19 10:37:43,787 INFO  - Stopping process 7284
+2020-02-19 10:37:43,795 INFO  - Send SIGINT 7284
+2020-02-19 10:37:43,800 WARN  - SIGINT to 7284 failed - Killing as fallback
+2020-02-19 10:37:43,806 INFO  - Stopping process 9656
+2020-02-19 10:37:43,814 INFO  - Send SIGINT 9656
+2020-02-19 10:37:43,819 WARN  - SIGINT to 9656 failed - Killing as fallback
+2020-02-19 10:37:43,826 INFO  - Finished ez-learner-service
+2020-02-19 10:37:43,832 DEBUG - Completed. Exit code is 0
+2020-02-19 10:37:44,781 DEBUG - Starting WinSW in the service mode
+2020-02-19 10:37:44,804 INFO  - Starting java -jar F:\Android\Work\Onlab\Backend\Service\ez-learner-service.jar
+2020-02-19 10:37:44,829 INFO  - Started process 1896
+2020-02-19 10:37:44,839 DEBUG - Forwarding logs of the process System.Diagnostics.Process (java) to winsw.DefaultLogAppender
