@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+
+        <item android:title="Teach">
+            <menu>
+                <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_learn_lesson"
+                    android:icon="@mipmap/ic_launcher"
+                    android:title="Lessons" />
+                <item
+                    android:id="@+id/nav_learn_lecture"
+                    android:icon="@mipmap/ic_launcher"
+                    android:title="Lectures" />
+                </group>
+            </menu>
+        </item>
+
+        <item android:title="Learn">
+            <menu>
+                <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_teach_lesson"
+                    android:icon="@drawable/roundend_button"
+                    android:title="Lessons" />
+                <item
+                    android:id="@+id/nav_teach_lecture"
+                    android:icon="@mipmap/ic_launcher"
+                    android:title="Lectures" />
+                </group>
+            </menu>
+        </item>
+
+</menu>
