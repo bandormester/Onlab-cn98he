@@ -15,7 +15,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
-private lateinit var retroTest : RetroTest
+public lateinit var retroTest : RetroTest
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
