@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#900C3F</color>
+    <color name="colorPrimaryDark">#581845</color>
+    <color name="colorAccent">#FFC300</color>
     <color name="mainButtonColor">#00008B</color>
     <color name="secondaryButtonColor">#00CCFF</color>
+    <color name="whiteColor">#FFFFFF</color>
+    <color name="colorOrange">#FF5733</color>
+    <color name="colorYellow">#FFC300</color>
+    <color name="colorRed">#C70039</color>
+    <color name="colorDarkRed">#900C3F</color>
+    <color name="colorPurple">#581845</color>
+    <color name="colorDarkBlue">#152238</color>
 </resources>

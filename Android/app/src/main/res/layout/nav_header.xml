@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="80dp" android:background="@color/secondaryButtonColor"
+    android:layout_height="80dp" android:background="@color/colorPrimaryDark"
     android:gravity="center_vertical" android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
@@ -12,6 +12,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Easy Learner"/>
+        android:layout_marginHorizontal="6dp"
+        android:textColor="@color/colorOrange"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:text="@string/app_name"/>
 
 </LinearLayout>

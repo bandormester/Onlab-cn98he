@@ -2,6 +2,7 @@ package hu.bme.aut.android.easylearner.ui.adapter
 
 import android.content.Context
 import android.text.Layout
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,12 +31,15 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
         val lesson = lessons[position]
         holder.lesson = lesson
         holder.position = position
-        holder.tvTeacherName.text = lesson.teacherId.toString() //TODO
+        holder.tvTeacherName.text = lesson.teacherName
         holder.ivTeacherPic.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_launcher_background))
-        holder.tvLevel.text = lesson.levelId.toString() //TODO
-        holder.tvTopic.text = lesson.topicId.toString() //TODO
+       // Log.d("retrofit", lesson.level)
+        Log.d("retrofit", "asdasd")
+        holder.tvLevel.text = lesson.levelName
+        holder.tvTopic.text = lesson.topicName
         holder.tvStartDate.text = lesson.startTime.toString() //TODO
-        holder.tvPayment.text = lesson.payment.toString()
+        val paymentText = "${lesson.payment} Ft"
+        holder.tvPayment.text = paymentText
         holder.tvRating.text = "5.0" //TODO
         holder.tvInfo.text = lesson.info
     }

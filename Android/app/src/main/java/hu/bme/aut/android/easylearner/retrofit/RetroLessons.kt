@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface RetroLessons {
 
-    @GET("/lesson")
+    @GET("/lesson/names")
     fun getLessons() : Call<List<Lesson>>
 
 }
