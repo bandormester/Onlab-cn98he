@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.AddLessonActivity"
+    android:background="@color/colorPrimary">
+
+    <ImageView
+        android:id="@+id/ivLevel"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/ivTopic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/spLevel"/>
+
+    <Spinner
+        android:id="@+id/spLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLevel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivLevel"
+        app:layout_constraintTop_toTopOf="@+id/ivLevel" />
+
+    <ImageView
+        android:id="@+id/ivTopic"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/btPickDate"
+        app:layout_constraintEnd_toStartOf="@id/spLevel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivLevel" />
+
+    <Spinner
+        android:id="@+id/spTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/ivTopic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivTopic"
+        app:layout_constraintTop_toTopOf="@+id/ivTopic" />
+
+    <EditText
+        android:id="@+id/tvInfos"
+        android:layout_width="match_parent"
+        android:background="@color/colorOrange"
+        android:layout_height="300dp"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btCreateLesson"
+        tools:layout_editor_absoluteX="10dp" />
+
+    <Button
+        android:id="@+id/btPickDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textbox_rounded_corner"
+        android:text="Select Start Date"
+        app:layout_constraintStart_toEndOf="@id/tvPickDate"
+        app:layout_constraintBottom_toTopOf="@+id/btPickTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivTopic" />
+
+    <TextView
+        android:id="@+id/tvPickDate"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/btPickDate"
+        app:layout_constraintEnd_toStartOf="@+id/btPickDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btPickDate" />
+
+    <Button
+        android:id="@+id/btPickTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textbox_rounded_corner"
+        android:text="Select Start Time"
+        app:layout_constraintStart_toEndOf="@id/tvPickTime"
+        app:layout_constraintBottom_toTopOf="@+id/tvInfos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btPickDate" />
+
+    <TextView
+        android:id="@+id/tvPickTime"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/btPickTime"
+        app:layout_constraintEnd_toStartOf="@+id/btPickTime"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btPickTime" />
+
+    <TextView
+        android:layout_width=""
+        android:layout_height=""
+
+    <Button
+        android:id="@+id/btCreateLesson"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/textbox_rounded_corner"
+        android:text="@string/add_lesson"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

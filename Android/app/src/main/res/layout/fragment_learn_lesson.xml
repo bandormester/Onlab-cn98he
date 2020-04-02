@@ -9,13 +9,14 @@
         android:id="@+id/recyclerLearnLesson"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/btLearnLesson"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btAddLesson"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btLearnLesson"
+        android:id="@+id/btAddLesson"
         android:background="@drawable/textbox_rounded_corner"
         android:layout_margin="10dp"
         android:layout_width="match_parent"

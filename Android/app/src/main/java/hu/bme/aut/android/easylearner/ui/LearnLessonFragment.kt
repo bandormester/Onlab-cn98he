@@ -12,6 +12,7 @@ import hu.bme.aut.android.easylearner.R
 import hu.bme.aut.android.easylearner.model.Lesson
 import hu.bme.aut.android.easylearner.retrofit.RetroLessons
 import hu.bme.aut.android.easylearner.retrofit.RetroTest
+import hu.bme.aut.android.easylearner.retrofit.RetrofitClient
 import hu.bme.aut.android.easylearner.ui.adapter.LessonAdapter
 import kotlinx.android.synthetic.main.fragment_learn_lesson.*
 import retrofit2.Call
@@ -37,13 +38,8 @@ class LearnLessonFragment : Fragment() {
         adapter = LessonAdapter(activity!!.baseContext)
         recyclerLearnLesson.layoutManager = LinearLayoutManager(activity!!.baseContext)
 
-
-        val builder = Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8090")
-            .addConverterFactory(GsonConverterFactory.create())
-        val retrofit = builder.build()
-        val retroLessons = retrofit.create(RetroLessons::class.java)
-        retroLessons.getLessons().enqueue(object : Callback<List<Lesson>>{
+        RetrofitClient.buildLessonService()
+        RetrofitClient.lessonService!!.getLessons().enqueue(object : Callback<List<Lesson>>{
             override fun onFailure(call: Call<List<Lesson>>, t: Throwable) {
                 Log.d("retrofit",t.message)
             }
