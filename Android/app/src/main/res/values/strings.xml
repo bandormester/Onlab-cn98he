@@ -4,4 +4,8 @@
     <string name="nav_drawer_open">Open navigation drawer</string>
     <string name="nav_drawer_close">Close navigation drawer</string>
     <string name="add_lesson">Add Lesson</string>
+    <string name="date_format">%d / %d / %d</string>
+    <string name="time_formate">%d : %d</string>
+    <string name="payment_value">Payment Value</string>
+    <string name="value_in_huf">Value in HUF</string>
 </resources>

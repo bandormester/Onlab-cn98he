@@ -1,11 +1,14 @@
 package hu.bme.aut.android.easylearner.ui
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import hu.bme.aut.android.easylearner.R
@@ -54,7 +57,11 @@ class LearnLessonFragment : Fragment() {
                 }
             }
         })
-
+        btAddLesson.setOnClickListener {
+            val intent = Intent(activity, AddLessonActivity::class.java)
+            intent.putExtra("asTeacher", true)
+            startActivityForResult(intent, 1)
+        }
         super.onActivityCreated(savedInstanceState)
     }
 
@@ -62,6 +69,17 @@ class LearnLessonFragment : Fragment() {
         adapter.clear()
         adapter.addLessonList(list)
         recyclerLearnLesson.adapter = adapter
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 1){
+            if(resultCode == Activity.RESULT_OK){
+                Toast.makeText(activity,"Lesson created", Toast.LENGTH_LONG).show()
+            }
+            else Toast.makeText(activity,"Not created", Toast.LENGTH_LONG).show()
+        }
     }
 
 }

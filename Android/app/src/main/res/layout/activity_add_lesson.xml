@@ -12,17 +12,20 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         app:layout_constraintBottom_toTopOf="@+id/ivTopic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/spLevel"/>
+        app:layout_constraintEnd_toEndOf="@+id/ivTopic"
+        app:layout_constraintStart_toStartOf="@+id/ivTopic"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spLevel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:textAlignment="center"
+        android:layout_height="30dp"
+        android:background="@color/colorYellow"
+        android:popupBackground="@color/colorOrange"
         app:layout_constraintBottom_toBottomOf="@+id/ivLevel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivLevel"
+        app:layout_constraintEnd_toEndOf="@+id/spTopic"
+        app:layout_constraintStart_toStartOf="@+id/spTopic"
         app:layout_constraintTop_toTopOf="@+id/ivLevel" />
 
     <ImageView
@@ -30,31 +33,34 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         app:layout_constraintBottom_toTopOf="@+id/btPickDate"
-        app:layout_constraintEnd_toStartOf="@id/spLevel"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvPickDate"
+        app:layout_constraintStart_toStartOf="@+id/tvPickDate"
         app:layout_constraintTop_toBottomOf="@+id/ivLevel" />
 
     <Spinner
         android:id="@+id/spTopic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@color/colorYellow"
+        android:textAlignment="center"
+        android:popupBackground="@color/colorOrange"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/ivTopic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivTopic"
+        app:layout_constraintEnd_toEndOf="@+id/btPickDate"
+        app:layout_constraintStart_toStartOf="@+id/btPickDate"
         app:layout_constraintTop_toTopOf="@+id/ivTopic" />
 
     <EditText
         android:id="@+id/tvInfos"
         android:layout_width="match_parent"
         android:background="@color/colorOrange"
-        android:layout_height="300dp"
-        android:layout_margin="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/btCreateLesson"
-        tools:layout_editor_absoluteX="10dp" />
+        android:layout_height="240dp"
+        android:layout_margin="20dp"
+        android:padding="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/btCreateLesson" />
 
     <Button
         android:id="@+id/btPickDate"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:background="@drawable/textbox_rounded_corner"
         android:text="Select Start Date"
@@ -65,8 +71,10 @@
 
     <TextView
         android:id="@+id/tvPickDate"
+        android:gravity="center"
         android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
+        android:background="@color/colorOrange"
         app:layout_constraintBottom_toBottomOf="@+id/btPickDate"
         app:layout_constraintEnd_toStartOf="@+id/btPickDate"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,27 +82,51 @@
 
     <Button
         android:id="@+id/btPickTime"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:background="@drawable/textbox_rounded_corner"
         android:text="Select Start Time"
         app:layout_constraintStart_toEndOf="@id/tvPickTime"
-        app:layout_constraintBottom_toTopOf="@+id/tvInfos"
+        app:layout_constraintBottom_toTopOf="@+id/tvPaymentValue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btPickDate" />
 
     <TextView
         android:id="@+id/tvPickTime"
+        android:background="@color/colorOrange"
+        android:gravity="center"
         android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/btPickTime"
         app:layout_constraintEnd_toStartOf="@+id/btPickTime"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btPickTime" />
 
+    <EditText
+        android:id="@+id/etPaymentValue"
+        android:inputType="number"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:hint="@string/value_in_huf"
+        android:gravity="center"
+        android:background="@color/colorOrange"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPaymentValue"
+        app:layout_constraintEnd_toEndOf="@+id/tvPickTime"
+        app:layout_constraintStart_toStartOf="@+id/tvPickTime"
+        app:layout_constraintTop_toTopOf="@+id/tvPaymentValue" />
+
     <TextView
-        android:layout_width=""
-        android:layout_height=""
+        android:id="@+id/tvPaymentValue"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:background="@drawable/textbox_rounded_corner"
+        android:text="@string/payment_value"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/tvInfos"
+        app:layout_constraintEnd_toEndOf="@+id/btPickTime"
+        app:layout_constraintStart_toStartOf="@+id/btPickTime"
+        app:layout_constraintTop_toBottomOf="@+id/btPickTime" />
+
 
     <Button
         android:id="@+id/btCreateLesson"

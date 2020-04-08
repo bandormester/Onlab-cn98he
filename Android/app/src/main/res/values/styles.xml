@@ -16,4 +16,11 @@
     </style>
 
 
+
+    <style name="DateDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorOrange</item>
+        <item name="colorPrimary">@color/colorYellow</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+    </style>
+
 </resources>
