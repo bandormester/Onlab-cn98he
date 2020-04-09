@@ -63,6 +63,11 @@ class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
                         id: Long
                     ) {
                         Log.d("retrofit", levels[position].toString())
+                        when(spLevel.selectedItem){
+                            "ELEMENTARY" -> ivLevel.setImageResource(R.mipmap.ic_elementary)
+                            "HIGH SCHOOL" -> ivLevel.setImageResource(R.mipmap.ic_highschool)
+                            "GRADUATED" -> ivLevel.setImageResource(R.mipmap.ic_graduated)
+                        }
                     }
 
                 }
@@ -92,6 +97,14 @@ class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
                         id: Long
                     ) {
                         Log.d("retrofit", topics[position].toString())
+                        when(spTopic.selectedItem){
+                            "MATH" -> ivTopic.setImageResource(R.mipmap.ic_math)
+                            "PHYSICS" -> ivTopic.setImageResource(R.mipmap.ic_physics)
+                            "CHEMISTRY" -> ivTopic.setImageResource(R.mipmap.ic_chemistry)
+                            "IT" -> ivTopic.setImageResource(R.mipmap.ic_it)
+                            "LITERATURE" -> ivTopic.setImageResource(R.mipmap.ic_literature)
+                            "BIOLOGY" -> ivTopic.setImageResource(R.mipmap.ic_biology)
+                        }
                     }
 
                 }
@@ -134,6 +147,7 @@ class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
             })
             val returnIntent = Intent()
             setResult(Activity.RESULT_OK, returnIntent)
+            finish()
         }
     }
 
