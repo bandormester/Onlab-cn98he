@@ -48,7 +48,7 @@
     <TextView
         android:id="@+id/tvStartDate"
         android:textAlignment="center"
-        android:layout_width="128dp"
+        android:layout_width="96dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/tvInfo"
         app:layout_constraintStart_toStartOf="@+id/tvTopic"
@@ -57,7 +57,7 @@
     <TextView
         android:id="@+id/tvPayment"
         android:textAlignment="center"
-        android:layout_width="64dp"
+        android:layout_width="96dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toStartOf="@id/tvRating"
         app:layout_constraintStart_toEndOf="@+id/tvStartDate"

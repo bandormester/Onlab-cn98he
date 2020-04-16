@@ -21,29 +21,10 @@ public lateinit var retroTest : RetroTest
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //val gson = GsonBuilder().setLenient().create()
-        val builder = Retrofit.Builder()
-            .baseUrl("http://192.168.0.227:8080")
-            .addConverterFactory(ScalarsConverterFactory.create())
-        val retrofit = builder.build()
-        retroTest = retrofit.create(RetroTest::class.java)
-
         button.setOnClickListener {
 
-            val getHello = retroTest.getHello(""+etHello.text)
-            getHello.enqueue(object : Callback<String>{
-                override fun onFailure(call: Call<String>, t: Throwable) {
-                    Log.d("retrofit",t.message)
-                }
-
-                override fun onResponse(call: Call<String>, response: Response<String>) {
-                    textbox.text = response.body()
-                    Log.d("retrofit", response.code().toString())
-                    Log.d("retrofit", response.body()?:"")
-                }
-
-            })
-
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
 
         button2.setOnClickListener {

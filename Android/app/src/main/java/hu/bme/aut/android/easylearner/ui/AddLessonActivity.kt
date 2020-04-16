@@ -21,6 +21,7 @@ import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
+@Suppress("DEPRECATION")
 class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
 
     private var asTeacher = true
@@ -28,6 +29,7 @@ class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
     private lateinit var topics : List<Topic>
     private var levelNames = mutableListOf<String>()
     private var topicNames = mutableListOf<String>()
+    private var chosenDate = Date(Calendar.getInstance().timeInMillis)
     private var year = Calendar.getInstance().get(Calendar.YEAR)
     private var month = Calendar.getInstance().get(Calendar.MONTH)
     private var day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
@@ -130,6 +132,7 @@ class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
             RetrofitClient.buildLessonService()
             RetrofitClient.lessonService!!.addLessonAsTeacher(1,
                 tvInfos.text.toString(),
+                chosenDate.time,
                 Integer.parseInt(etPaymentValue.text.toString()),
                 levels[spLevel.selectedItemPosition].id,
                 topics[spTopic.selectedItemPosition].id).enqueue(object : Callback<Void>{
@@ -162,11 +165,13 @@ class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
         this.year = year
         this.month = month
         this.day = dayOfMonth
+        chosenDate = Date(year, month, dayOfMonth, hour, minute)
     }
 
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
         tvPickTime.text = getString(R.string.time_formate, hour, minute)
         this.hour = hourOfDay
         this.minute = minute
+        chosenDate = Date(year, month, day, hourOfDay, minute)
     }
 }

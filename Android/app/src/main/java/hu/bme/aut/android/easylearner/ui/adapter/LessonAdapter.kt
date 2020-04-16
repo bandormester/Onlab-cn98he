@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.android.easylearner.R
 import hu.bme.aut.android.easylearner.model.Lesson
 import kotlinx.android.synthetic.main.row_lesson.view.*
+import java.util.*
 
 class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHolder>(){
 
@@ -29,6 +30,7 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
 
     override fun onBindViewHolder(holder: LessonAdapter.LessonHolder, position: Int) {
         val lesson = lessons[position]
+        val date = Date(lesson.startTime)
         holder.lesson = lesson
         holder.position = position
         holder.tvTeacherName.text = lesson.teacherName
@@ -37,7 +39,7 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
         Log.d("retrofit", "asdasd")
         holder.tvLevel.text = lesson.levelName
         holder.tvTopic.text = lesson.topicName
-        holder.tvStartDate.text = lesson.startTime.toString() //TODO
+        holder.tvStartDate.text = date.year.toString()+"-"+date.month.toString()+"-"+date.day.toString()+" / "+date.hours.toString()+":"+date.minutes.toString() //TODO
         val paymentText = "${lesson.payment} Ft"
         holder.tvPayment.text = paymentText
         holder.tvRating.text = "5.0" //TODO

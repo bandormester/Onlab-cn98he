@@ -22,8 +22,13 @@ interface RetroLessons {
     @POST("/lesson/add/teacher")
     fun addLessonAsTeacher(@Query("idOfTeacher") idOfTeacher: Int,
                            @Query("info") info : String,
+                           @Query("startTime") startTime : Long,
                            @Query("paymentValue") paymentValue : Int,
                            @Query("idOfLevel") idOfLevel : Int,
                            @Query("idOfTopic") idOfTopic : Int) : Call<Void>
+
+    @GET("/user/login")
+    fun tryLogin(@Query("username") username: String,
+                 @Query("password") password: String) : Call<String>
 
 }

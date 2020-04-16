@@ -5,7 +5,7 @@ data class Lesson(
     val teacherName : String = "",
     val studentName : String = "",
     val info : String = "",
-    val startTime : Int = 0,
+    val startTime : Long = 0,
     val endTime : Int = 0,
     val longitude : String = "",
     val latitude : String = "",
