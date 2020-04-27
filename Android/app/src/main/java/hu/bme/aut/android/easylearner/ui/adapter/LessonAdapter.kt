@@ -36,10 +36,11 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
         holder.tvTeacherName.text = lesson.teacherName
         holder.ivTeacherPic.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_launcher_background))
        // Log.d("retrofit", lesson.level)
-        Log.d("retrofit", "asdasd")
+        //Log.d("retrofit", "asdasd")
         holder.tvLevel.text = lesson.levelName
         holder.tvTopic.text = lesson.topicName
-        holder.tvStartDate.text = date.year.toString()+"-"+date.month.toString()+"-"+date.day.toString()+" / "+date.hours.toString()+":"+date.minutes.toString() //TODO
+        holder.tvStartDate.text = date.year.toString()+"-"+(date.month+1).toString()+"-"+date.date.toString()+" / "+date.hours.toString()+":"+date.minutes.toString() //TODO
+        Log.d("datum", lesson.startTime.toString())
         val paymentText = "${lesson.payment} Ft"
         holder.tvPayment.text = paymentText
         holder.tvRating.text = "5.0" //TODO

@@ -37,11 +37,9 @@ class LearnLessonFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_learn_lesson, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        adapter = LessonAdapter(activity!!.baseContext)
-        recyclerLearnLesson.layoutManager = LinearLayoutManager(activity!!.baseContext)
+    override fun onStart() {
+        super.onStart()
 
-        RetrofitClient.buildLessonService()
         RetrofitClient.lessonService!!.getLessons().enqueue(object : Callback<List<Lesson>>{
             override fun onFailure(call: Call<List<Lesson>>, t: Throwable) {
                 Log.d("retrofit",t.message)
@@ -57,6 +55,14 @@ class LearnLessonFragment : Fragment() {
                 }
             }
         })
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        adapter = LessonAdapter(activity!!.baseContext)
+        recyclerLearnLesson.layoutManager = LinearLayoutManager(activity!!.baseContext)
+
+        RetrofitClient.buildLessonService()
+
         btAddLesson.setOnClickListener {
             val intent = Intent(activity, AddLessonActivity::class.java)
             intent.putExtra("asTeacher", true)

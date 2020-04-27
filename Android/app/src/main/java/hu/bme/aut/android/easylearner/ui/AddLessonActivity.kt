@@ -129,13 +129,18 @@ class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
         }
 
         btCreateLesson.setOnClickListener {
+            Log.d("datum",chosenDate.time.toString())
+            Log.d("datum", Date(chosenDate.time).time.toString())
+            Log.d("datum",Date(chosenDate.time).date.toString()+"-"+Date(chosenDate.time).hours.toString()+"-"+Date(chosenDate.time).minutes.toString())
+
             RetrofitClient.buildLessonService()
             RetrofitClient.lessonService!!.addLessonAsTeacher(1,
                 tvInfos.text.toString(),
                 chosenDate.time,
                 Integer.parseInt(etPaymentValue.text.toString()),
-                levels[spLevel.selectedItemPosition].id,
-                topics[spTopic.selectedItemPosition].id).enqueue(object : Callback<Void>{
+                topics[spTopic.selectedItemPosition].id,
+                levels[spLevel.selectedItemPosition].id
+                ).enqueue(object : Callback<Void>{
                 override fun onFailure(call: Call<Void>, t: Throwable) {
                     Log.d("retrofit", t.message)
                     Log.d("retrofit", t.localizedMessage)
