@@ -8,6 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.load.model.LazyHeaders
+import com.bumptech.glide.request.RequestOptions
 import hu.bme.aut.android.easylearner.R
 import hu.bme.aut.android.easylearner.model.Lesson
 import kotlinx.android.synthetic.main.row_lesson.view.*
@@ -35,6 +40,15 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
         holder.position = position
         holder.tvTeacherName.text = lesson.teacherName
         holder.ivTeacherPic.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_launcher_background))
+        val picUrl = "http://10.0.2.2:8090/user/pic/death"
+        val glideUrl = GlideUrl(picUrl)
+        val option = RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
+        Glide.with(this.context)
+            .load(glideUrl)
+            .apply(option)
+            .into(holder.ivTeacherPic)
+
+        //holder.ivTeacherPic.setImageDrawable()
        // Log.d("retrofit", lesson.level)
         //Log.d("retrofit", "asdasd")
         holder.tvLevel.text = lesson.levelName
