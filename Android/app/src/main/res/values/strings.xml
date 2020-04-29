@@ -8,4 +8,10 @@
     <string name="time_formate">%d : %d</string>
     <string name="payment_value">Payment Value</string>
     <string name="value_in_huf">Value in HUF</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="next">Next</string>
+    <string name="full_name">Full name</string>
+    <string name="creat_your_profile">Create your profile</string>
+    <string name="id_card_number">ID Card Number</string>
 </resources>

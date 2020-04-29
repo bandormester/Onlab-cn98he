@@ -1,16 +1,18 @@
-package hu.bme.aut.android.easylearner.ui
+package hu.bme.aut.android.easylearner.ui.login
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
+import android.widget.Toast
 import hu.bme.aut.android.easylearner.R
 import hu.bme.aut.android.easylearner.retrofit.RetrofitClient
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -36,6 +38,22 @@ class LoginActivity : AppCompatActivity() {
                 }
 
             })
+        }
+
+        btRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivityForResult(intent, 2)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 2){
+            if(resultCode == Activity.RESULT_OK){
+                Toast.makeText(this.baseContext,"Registered", Toast.LENGTH_LONG).show()
+            }
+            else Toast.makeText(this.baseContext,"Cancelled", Toast.LENGTH_LONG).show()
         }
     }
 }

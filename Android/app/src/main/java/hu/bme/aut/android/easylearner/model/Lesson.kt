@@ -2,6 +2,8 @@ package hu.bme.aut.android.easylearner.model
 
 data class Lesson(
     val id : Int = 0,
+    val teacherId : Int = 0,
+    val studentId : Int = 0,
     val teacherName : String = "",
     val studentName : String = "",
     val info : String = "",

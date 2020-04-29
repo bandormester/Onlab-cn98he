@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary">
+
+    <TextView
+        android:id="@+id/tvCreateProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/creat_your_profile"
+        android:textColor="@color/colorOrange"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/iplRegUsername"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/iplRegUsername"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvCreateProfile"
+        app:layout_constraintBottom_toTopOf="@id/iplRegPassword"
+        android:layout_marginHorizontal="24dp"
+        android:background="@drawable/textbox_rounded_corner"
+        android:theme="@style/TextLabel"
+        >
+
+        <EditText
+            android:id="@+id/etRegUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/username"
+            android:inputType="text"
+            android:textColor="@color/colorDarkBlue" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/iplRegPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/iplRegUsername"
+        app:layout_constraintBottom_toTopOf="@id/iplRegFullname"
+        android:background="@drawable/textbox_rounded_corner"
+        android:layout_marginHorizontal="24dp"
+        android:theme="@style/TextLabel">
+
+        <EditText
+            android:id="@+id/etRegPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/iplRegFullname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/iplRegPassword"
+        app:layout_constraintBottom_toTopOf="@id/iplRegIdcard"
+        android:background="@drawable/textbox_rounded_corner"
+        android:layout_marginHorizontal="24dp"
+        android:theme="@style/TextLabel">
+
+        <EditText
+            android:id="@+id/etRegFullname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/full_name"
+            android:inputType="text"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/iplRegIdcard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/iplRegFullname"
+        app:layout_constraintBottom_toTopOf="@+id/btRegNext"
+        android:background="@drawable/textbox_rounded_corner"
+        android:layout_marginHorizontal="24dp"
+        android:theme="@style/TextLabel">
+
+        <EditText
+            android:id="@+id/etRegIdcard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/id_card_number"
+            android:inputType="text"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btRegNext"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="@string/next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iplRegIdcard"
+        android:background="@drawable/rounded_button_alternate"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
