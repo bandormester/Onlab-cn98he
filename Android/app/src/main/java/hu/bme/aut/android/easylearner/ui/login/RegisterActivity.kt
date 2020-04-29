@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_reg_infos.*
 
 class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var newLearner : Learner
+    lateinit var newLearner : Learner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +30,7 @@ class RegisterActivity : AppCompatActivity() {
     fun toPhotoFragment(){
         newLearner = Learner(etRegFullname.text.toString(),
             etRegIdcard.text.toString(),
+            "",
             etRegUsername.text.toString(),
             Base64.encodeToString(etRegPassword.text.toString().toByteArray(), Base64.NO_WRAP))
         supportFragmentManager.beginTransaction().replace(R.id.reg_fragment_container, RegPhotoFragment()).commit()

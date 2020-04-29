@@ -37,6 +37,8 @@ class RegPhotoFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
+        val learner = (activity as RegisterActivity).newLearner
+
         btTakePhoto.setOnClickListener {
             askCameraPermission()
         }
@@ -51,7 +53,7 @@ class RegPhotoFragment : Fragment() {
 
             val requestBody = RequestBody.create(MediaType.parse("application/octet-stream"), image)
 
-            RetrofitClient.lessonService!!.addLearner(requestBody).enqueue(object : Callback<Void>{
+            RetrofitClient.lessonService!!.addLearner(requestBody, learner.name, learner.idCardNumber, learner.username, learner.password).enqueue(object : Callback<Void>{
                 override fun onFailure(call: Call<Void>, t: Throwable) {
                     Log.d("retrofit",t.message)
                 }

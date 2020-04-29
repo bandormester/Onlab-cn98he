@@ -25,7 +25,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-class LearnLessonFragment : Fragment() {
+class LearnLessonFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
 
     private lateinit var adapter : LessonAdapter
 
@@ -74,6 +74,7 @@ class LearnLessonFragment : Fragment() {
         adapter.clear()
         adapter.addLessonList(list)
         recyclerLearnLesson.adapter = adapter
+        adapter.listener = this
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -86,5 +87,11 @@ class LearnLessonFragment : Fragment() {
             else Toast.makeText(activity,"Not created", Toast.LENGTH_LONG).show()
         }
     }
+
+    override fun onLessonSelected(lesson: Lesson, position: Int) {
+        Log.d("onClick", "clicked")
+        Toast.makeText(activity, "Lesson clicked "+lesson.teacherName, Toast.LENGTH_LONG).show()
+    }
+
 
 }

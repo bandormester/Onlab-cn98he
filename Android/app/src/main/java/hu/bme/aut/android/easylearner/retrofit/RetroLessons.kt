@@ -30,7 +30,11 @@ interface RetroLessons {
     fun tryLogin(@Query("username") username: String,
                  @Query("password") password: String) : Call<String>
 
-    @POST("user/pic/upload")
-    fun addLearner(@Body pic : RequestBody) : Call<Void>
+    @POST("/user/register")
+    fun addLearner(@Body pic : RequestBody,
+                   @Query("name") name : String,
+                   @Query("idCardNumber") idCardNumber : String,
+                   @Query("username") username : String,
+                   @Query("password") password : String) : Call<Void>
 
 }
