@@ -3,11 +3,9 @@ package hu.bme.aut.android.easylearner.retrofit
 import hu.bme.aut.android.easylearner.model.Lesson
 import hu.bme.aut.android.easylearner.model.Level
 import hu.bme.aut.android.easylearner.model.Topic
+import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface RetroLessons {
 
@@ -31,5 +29,8 @@ interface RetroLessons {
     @GET("/user/login")
     fun tryLogin(@Query("username") username: String,
                  @Query("password") password: String) : Call<String>
+
+    @POST("user/pic/upload")
+    fun addLearner(@Body pic : RequestBody) : Call<Void>
 
 }

@@ -14,4 +14,7 @@
     <string name="full_name">Full name</string>
     <string name="creat_your_profile">Create your profile</string>
     <string name="id_card_number">ID Card Number</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="register">Register</string>
+    <string name="log_in">Log in</string>
 </resources>
