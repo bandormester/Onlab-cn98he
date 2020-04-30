@@ -53,9 +53,10 @@
         android:id="@+id/tvInfos"
         android:layout_width="match_parent"
         android:background="@color/colorOrange"
-        android:layout_height="240dp"
+        android:layout_height="200dp"
         android:layout_margin="20dp"
         android:padding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/etPaymentValue"
         app:layout_constraintBottom_toTopOf="@+id/btCreateLesson" />
 
     <Button

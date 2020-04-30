@@ -37,4 +37,7 @@ interface RetroLessons {
                    @Query("username") username : String,
                    @Query("password") password : String) : Call<Void>
 
+    @PUT("/lesson/book/student")
+    fun bookLessonAsTeacher(@Query("lessonId") lessonId : Int,
+                            @Query("studentId") studentId : Int) : Call<Void>
 }

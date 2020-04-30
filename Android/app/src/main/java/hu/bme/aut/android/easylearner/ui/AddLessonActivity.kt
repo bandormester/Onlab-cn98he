@@ -138,8 +138,8 @@ class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
                 tvInfos.text.toString(),
                 chosenDate.time,
                 Integer.parseInt(etPaymentValue.text.toString()),
-                topics[spTopic.selectedItemPosition].id,
-                levels[spLevel.selectedItemPosition].id
+                levels[spLevel.selectedItemPosition].id,
+                topics[spTopic.selectedItemPosition].id
                 ).enqueue(object : Callback<Void>{
                 override fun onFailure(call: Call<Void>, t: Throwable) {
                     Log.d("retrofit", t.message)

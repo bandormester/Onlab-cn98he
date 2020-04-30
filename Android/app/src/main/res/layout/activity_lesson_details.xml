@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.LessonDetailsActivity"
+    android:background="@color/colorPrimary">
+
+    <TextView
+        android:id="@+id/tvLearnerDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorOrange"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:text="Learner Details"/>
+
+    <ImageView
+        android:id="@+id/ivDetailsProfile"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginVertical="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/tvDetailsName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLearnerDetails" />
+
+    <TextView
+        android:id="@+id/tvDetailsName"
+        android:layout_width="wrap_content"
+        android:minWidth="100dp"
+        android:background="@drawable/textbox_rounded_corner"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/ivDetailsProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivDetailsProfile"
+        app:layout_constraintTop_toTopOf="@+id/ivDetailsProfile" />
+
+    <ImageView
+        android:id="@+id/ivDetailsTopic"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintEnd_toStartOf="@+id/ivDetailsLevel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailsTopic" />
+
+    <TextView
+        android:id="@+id/tvTopicAndLevel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorOrange"
+        android:gravity="center"
+        android:layout_marginVertical="16dp"
+        android:text="Topic and Level"
+        app:layout_constraintTop_toBottomOf="@+id/ivDetailsProfile" />
+
+    <TextView
+        android:id="@+id/tvDetailsTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:background="@drawable/textbox_rounded_corner"
+        android:minWidth="80dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/ivDetailsTopic"
+        app:layout_constraintStart_toStartOf="@+id/ivDetailsTopic"
+        app:layout_constraintTop_toBottomOf="@+id/tvTopicAndLevel" />
+
+    <ImageView
+        android:id="@+id/ivDetailsLevel"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivDetailsTopic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivDetailsTopic"
+        app:layout_constraintTop_toTopOf="@+id/ivDetailsTopic" />
+
+    <TextView
+        android:id="@+id/tvDetailsLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="80dp"
+        android:background="@drawable/textbox_rounded_corner"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDetailsTopic"
+        app:layout_constraintEnd_toEndOf="@+id/ivDetailsLevel"
+        app:layout_constraintStart_toStartOf="@+id/ivDetailsLevel"
+        app:layout_constraintTop_toTopOf="@+id/tvDetailsTopic" />
+
+    <TextView
+        android:id="@+id/tvDateAndPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorOrange"
+        android:gravity="center"
+        android:layout_marginVertical="16dp"
+        android:text="Date and Price"
+        app:layout_constraintTop_toBottomOf="@+id/ivDetailsTopic" />
+
+    <TextView
+        android:id="@+id/tvDetailsDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:paddingHorizontal="6dp"
+        android:background="@drawable/textbox_rounded_corner"
+        android:minWidth="80dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@id/tvDetailsPrice"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDateAndPrice" />
+
+    <TextView
+        android:id="@+id/tvDetailsPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textbox_rounded_corner"
+        android:minWidth="40dp"
+        android:paddingHorizontal="6dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDetailsDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvDetailsDate"
+        app:layout_constraintTop_toTopOf="@+id/tvDetailsDate" />
+
+    <TextView
+        android:id="@+id/tvInfoLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:background="@color/colorOrange"
+        android:gravity="center"
+        android:text="Other details"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailsDate" />
+
+    <TextView
+        android:id="@+id/tvDetailsInfo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/textbox_rounded_corner"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/btBookLesson"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvInfoLabel" />
+
+
+    <Button
+        android:id="@+id/btBookLesson"
+        android:text="Apply Lesson"
+        android:paddingHorizontal="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundend_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
