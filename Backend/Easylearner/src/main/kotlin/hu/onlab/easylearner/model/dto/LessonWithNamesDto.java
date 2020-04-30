@@ -7,11 +7,13 @@ import lombok.Data;
 @Data
 public class LessonWithNamesDto {
         Integer Id;
+        Integer TeacherId;
+        Integer StudentId;
         String TeacherName;
         String StudentName;
         String Info;
-        Float StartTime;
-        Float EndTime;
+        Long StartTime;
+        Long EndTime;
         String Longitude;
         String Latitude;
         Integer Payment;

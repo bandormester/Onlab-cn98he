@@ -57,6 +57,8 @@ public class LessonService {
             if(teacher.isPresent()  && topic.isPresent() && level.isPresent()) {
                 help = new LessonWithNamesDto(
                         l.getId(),
+                        teacher.get().getUserId(),
+                        l.getStudentId()==null?0:l.getStudentId(),
                         teacher.get().getName(),
                         studentName,
                         l.getInfo(),
@@ -65,8 +67,8 @@ public class LessonService {
                         l.getLongitude(),
                         l.getLatitude(),
                         l.getPayment(),
-                        topic.get().getName(),
-                        level.get().getName());
+                        level.get().getName(),
+                        topic.get().getName());
                 result.add(help);
             }
         }
@@ -87,9 +89,24 @@ public class LessonService {
         query.setParameter("lessonInfo", info);
         query.setParameter("lessonStartTime", startTime);
         query.setParameter("paymentValue", paymentValue);
-        query.setParameter("idOfTopic", idOfTopic);
         query.setParameter("idOfLevel", idOfLevel);
+        query.setParameter("idOfTopic", idOfTopic);
+
 
         query.execute();
+    }
+
+    public void bookLesson(Integer lessonId, Integer studentId){
+        StoredProcedureQuery query = em.createStoredProcedureQuery("BookLessonAsStudent");
+
+        query.registerStoredProcedureParameter("LessonId", Integer.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("NewId", Integer.class, ParameterMode.IN);
+
+        query.setParameter("LessonId", lessonId);
+        query.setParameter("NewId", studentId);
+
+        query.execute();
+        //BookLessonAsStudent(LessonId in NUMBER, NewId in NUMBER)
+
     }
 }

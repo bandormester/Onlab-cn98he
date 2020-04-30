@@ -9,8 +9,8 @@ public class LessonDto {
     Integer TeacherId;
     Integer StudentId;
     String Info;
-    Float StartTime;
-    Float EndTime;
+    Long StartTime;
+    Long EndTime;
     String Longitude;
     String Latitude;
     Integer Payment;

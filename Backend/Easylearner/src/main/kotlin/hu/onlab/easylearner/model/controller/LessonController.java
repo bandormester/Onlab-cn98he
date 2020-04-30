@@ -40,4 +40,11 @@ public class LessonController {
         List<LessonWithNamesDto> queryResult = lessonService.findAllWithNamesQuery();
         return ResponseEntity.status(HttpStatus.OK).body(queryResult);
     }
+
+    @PutMapping("/book/student")
+    ResponseEntity<Void> bookLessonAsStudent(@RequestParam Integer lessonId,
+                                             @RequestParam Integer studentId){
+        lessonService.bookLesson(lessonId, studentId);
+        return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
 }

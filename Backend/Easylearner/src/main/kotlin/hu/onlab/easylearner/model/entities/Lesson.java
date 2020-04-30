@@ -26,11 +26,11 @@ public class Lesson {
 
     @Basic
     @Column(name = "STARTTIME")
-    Float StartTime;
+    Long StartTime;
 
     @Basic
     @Column(name = "ENDTIME")
-    Float EndTime;
+    Long EndTime;
 
     @Basic
     @Column(name = "LONGITUDE")
