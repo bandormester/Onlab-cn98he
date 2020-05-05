@@ -49,7 +49,7 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
         }
 
         holder.ivTeacherPic.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_launcher_background))
-        
+
         val glideUrl = GlideUrl(picUrl)
         val option = RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
         //Glide.with(this.context)

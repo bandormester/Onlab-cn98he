@@ -75,6 +75,78 @@ public class LessonService {
         return result;
     }
 
+    public List<LessonWithNamesDto> findLessonAsTeacher(){
+        List<LessonWithNamesDto> result = new ArrayList<LessonWithNamesDto>();
+        List<Lesson> lessons = lessonRepository.findAll();
+        LessonWithNamesDto help;
+
+        for(Lesson l : lessons) {
+            if(l.getTeacherId() == null) {
+
+                Optional<LearnersKT> student = learnerRepository.findById(l.getStudentId());
+                Optional<Topic> topic = topicRepository.findById(l.getTopicId());
+                Optional<Level> level = levelRepository.findById(l.getLevelId());
+
+                if(student.isPresent()  && topic.isPresent() && level.isPresent()) {
+                    help = new LessonWithNamesDto(
+                            l.getId(),
+                            0,
+                            student.get().getUserId(),
+                            "",
+                            student.get().getName(),
+                            l.getInfo(),
+                            l.getStartTime(),
+                            l.getEndTime(),
+                            l.getLongitude(),
+                            l.getLatitude(),
+                            l.getPayment(),
+                            level.get().getName(),
+                            topic.get().getName());
+
+                    result.add(help);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public List<LessonWithNamesDto> findLessonAsStudent(){
+        List<LessonWithNamesDto> result = new ArrayList<LessonWithNamesDto>();
+        List<Lesson> lessons = lessonRepository.findAll();
+        LessonWithNamesDto help;
+
+        for(Lesson l : lessons) {
+            if(l.getStudentId() == null) {
+
+                Optional<LearnersKT> teacher = learnerRepository.findById(l.getTeacherId());
+                Optional<Topic> topic = topicRepository.findById(l.getTopicId());
+                Optional<Level> level = levelRepository.findById(l.getLevelId());
+
+                if(teacher.isPresent()  && topic.isPresent() && level.isPresent()) {
+                    help = new LessonWithNamesDto(
+                            l.getId(),
+                            teacher.get().getUserId(),
+                            0,
+                            teacher.get().getName(),
+                            "",
+                            l.getInfo(),
+                            l.getStartTime(),
+                            l.getEndTime(),
+                            l.getLongitude(),
+                            l.getLatitude(),
+                            l.getPayment(),
+                            level.get().getName(),
+                            topic.get().getName());
+
+                    result.add(help);
+                }
+            }
+        }
+
+        return result;
+    }
+
     public void addLessonAsTeacher(Integer idOfTeacher, String info, Long startTime , Integer paymentValue, Integer idOfTopic, Integer idOfLevel){
         StoredProcedureQuery query = em.createStoredProcedureQuery("AddLessonAsTeacher");
 
@@ -86,6 +158,27 @@ public class LessonService {
         query.registerStoredProcedureParameter("idOfTopic", Integer.class, ParameterMode.IN);
 
         query.setParameter("idOfTeacher", idOfTeacher);
+        query.setParameter("lessonInfo", info);
+        query.setParameter("lessonStartTime", startTime);
+        query.setParameter("paymentValue", paymentValue);
+        query.setParameter("idOfLevel", idOfLevel);
+        query.setParameter("idOfTopic", idOfTopic);
+
+
+        query.execute();
+    }
+
+    public void addLessonAsStudent(Integer idOfStudent, String info, Long startTime , Integer paymentValue, Integer idOfTopic, Integer idOfLevel){
+        StoredProcedureQuery query = em.createStoredProcedureQuery("AddLessonAsStudent");
+
+        query.registerStoredProcedureParameter("idOfStudent", Integer.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("lessonInfo", String.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("lessonStartTime", Long.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("paymentValue", Integer.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("idOfLevel", Integer.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("idOfTopic", Integer.class, ParameterMode.IN);
+
+        query.setParameter("idOfStudent", idOfStudent);
         query.setParameter("lessonInfo", info);
         query.setParameter("lessonStartTime", startTime);
         query.setParameter("paymentValue", paymentValue);

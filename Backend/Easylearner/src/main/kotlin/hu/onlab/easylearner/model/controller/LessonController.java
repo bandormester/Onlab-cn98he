@@ -25,6 +25,19 @@ public class LessonController {
         return ResponseEntity.status(HttpStatus.OK).body(queryResult);
     }
 
+    @GetMapping("/names/student")
+    ResponseEntity<List<LessonWithNamesDto>> findLessonsAsStudent(){
+        List<LessonWithNamesDto> queryResult = lessonService.findLessonAsStudent();
+        return ResponseEntity.status(HttpStatus.OK).body(queryResult);
+    }
+
+    @GetMapping("/names/teacher")
+    ResponseEntity<List<LessonWithNamesDto>> findLessonsAsTeacher(){
+        List<LessonWithNamesDto> queryResult = lessonService.findLessonAsTeacher();
+        return ResponseEntity.status(HttpStatus.OK).body(queryResult);
+    }
+
+
     @PostMapping("/add/teacher")
     void addLessonAsTeacher(@RequestParam Integer idOfTeacher,
                             @RequestParam String info,
@@ -33,6 +46,16 @@ public class LessonController {
                             @RequestParam Integer idOfLevel,
                             @RequestParam Integer idOfTopic){
         lessonService.addLessonAsTeacher(idOfTeacher, info,startTime, paymentValue, idOfLevel, idOfTopic);
+    }
+
+    @PostMapping("/add/student")
+    void addLessonAsStudent(@RequestParam Integer idOfStudent,
+                            @RequestParam String info,
+                            @RequestParam Long startTime,
+                            @RequestParam Integer paymentValue,
+                            @RequestParam Integer idOfLevel,
+                            @RequestParam Integer idOfTopic){
+        lessonService.addLessonAsStudent(idOfStudent, info,startTime, paymentValue, idOfLevel, idOfTopic);
     }
 
     @GetMapping("/names")
