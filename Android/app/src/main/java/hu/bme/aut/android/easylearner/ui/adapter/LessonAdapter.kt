@@ -23,6 +23,7 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
     val lessons : MutableList<Lesson> = mutableListOf()
     var listener : OnLessonClickedListener? = null
     val context : Context = con
+    var asTeacher : Boolean = false
 
     interface OnLessonClickedListener{
         fun onLessonSelected(lesson: Lesson, position: Int)
@@ -38,16 +39,23 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
         val date = Date(lesson.startTime)
         holder.lesson = lesson
         holder.position = position
-        holder.tvTeacherName.text = lesson.teacherName
+        var picUrl = ""
+        if(!asTeacher){
+            holder.tvTeacherName.text = lesson.teacherName
+            picUrl = "http://10.0.2.2:8090/user/pic/"+lesson.teacherName.hashCode()
+        } else{
+            holder.tvTeacherName.text = lesson.studentName
+            picUrl = "http://10.0.2.2:8090/user/pic/"+lesson.studentName.hashCode()
+        }
+
         holder.ivTeacherPic.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_launcher_background))
-        val picUrl = "http://10.0.2.2:8090/user/pic/"+lesson.teacherName.hashCode()
-        Log.d("glide", picUrl)
+        
         val glideUrl = GlideUrl(picUrl)
         val option = RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
-        Glide.with(this.context)
-            .load(glideUrl)
-            .apply(option)
-            .into(holder.ivTeacherPic)
+        //Glide.with(this.context)
+        //    .load(glideUrl)
+        //    .apply(option)
+        //    .into(holder.ivTeacherPic)
         holder.tvLevel.text = lesson.levelName
         holder.tvTopic.text = lesson.topicName
         holder.tvStartDate.text = date.year.toString()+"-"+(date.month+1).toString()+"-"+date.date.toString()+" / "+date.hours.toString()+":"+date.minutes.toString() //TODO

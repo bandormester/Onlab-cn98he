@@ -7,25 +7,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import hu.bme.aut.android.easylearner.R
 import hu.bme.aut.android.easylearner.model.Lesson
-import hu.bme.aut.android.easylearner.retrofit.RetroLessons
-import hu.bme.aut.android.easylearner.retrofit.RetroTest
 import hu.bme.aut.android.easylearner.retrofit.RetrofitClient
 import hu.bme.aut.android.easylearner.ui.adapter.LessonAdapter
 import kotlinx.android.synthetic.main.fragment_learn_lesson.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 
-class LearnLessonFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
+class TeachLessonFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
 
     private lateinit var adapter : LessonAdapter
 
@@ -41,7 +35,8 @@ class LearnLessonFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
         super.onStart()
 
         RetrofitClient.buildLessonService()
-        RetrofitClient.lessonService!!.getLessonsAsStudent().enqueue(object : Callback<List<Lesson>>{
+        RetrofitClient.lessonService!!.getLessonsAsTeacher().enqueue(object :
+            Callback<List<Lesson>> {
             override fun onFailure(call: Call<List<Lesson>>, t: Throwable) {
                 Log.d("retrofit",t.message)
             }
@@ -61,11 +56,11 @@ class LearnLessonFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         adapter = LessonAdapter(activity!!.baseContext)
         recyclerLearnLesson.layoutManager = LinearLayoutManager(activity!!.baseContext)
-        btAddLesson.text = getString(R.string.learn_something_else)
+        btAddLesson.text = getString(R.string.teach_something_else)
 
         btAddLesson.setOnClickListener {
             val intent = Intent(activity, AddLessonActivity::class.java)
-            intent.putExtra("asTeacher", false)
+            intent.putExtra("asTeacher", true)
             startActivityForResult(intent, 1)
         }
         super.onActivityCreated(savedInstanceState)
@@ -73,7 +68,7 @@ class LearnLessonFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
 
     fun setupRecyclerView(list : List<Lesson>){
         adapter.clear()
-        adapter.asTeacher = false
+        adapter.asTeacher = true
         adapter.addLessonList(list)
         recyclerLearnLesson.adapter = adapter
         adapter.listener = this
@@ -97,6 +92,7 @@ class LearnLessonFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
         startActivity(intent)
         Toast.makeText(activity, "Lesson clicked "+lesson.teacherName, Toast.LENGTH_LONG).show()
     }
+
 
 
 }

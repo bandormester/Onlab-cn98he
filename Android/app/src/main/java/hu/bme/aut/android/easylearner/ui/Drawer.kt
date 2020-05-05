@@ -34,6 +34,7 @@ class Drawer : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListe
         when(p0.itemId){
             R.id.nav_learn_lesson -> supportFragmentManager.beginTransaction().replace(R.id.fragment_container, LearnLessonFragment()).commit()
             R.id.nav_learn_lecture -> supportFragmentManager.beginTransaction().replace(R.id.fragment_container, LearnLectureFragment()).commit()
+            R.id.nav_teach_lesson -> supportFragmentManager.beginTransaction().replace(R.id.fragment_container, TeachLessonFragment()).commit()
         }
         draw_layout.closeDrawer(GravityCompat.START)
         return true

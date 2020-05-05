@@ -12,6 +12,12 @@ interface RetroLessons {
     @GET("/lesson/names")
     fun getLessons() : Call<List<Lesson>>
 
+    @GET("/lesson/names/student")
+    fun getLessonsAsStudent() : Call<List<Lesson>>
+
+    @GET("/lesson/names/teacher")
+    fun getLessonsAsTeacher() : Call<List<Lesson>>
+
     @GET("/level")
     fun getLevels() : Call<List<Level>>
 
@@ -20,6 +26,14 @@ interface RetroLessons {
 
     @POST("/lesson/add/teacher")
     fun addLessonAsTeacher(@Query("idOfTeacher") idOfTeacher: Int,
+                           @Query("info") info : String,
+                           @Query("startTime") startTime : Long,
+                           @Query("paymentValue") paymentValue : Int,
+                           @Query("idOfLevel") idOfLevel : Int,
+                           @Query("idOfTopic") idOfTopic : Int) : Call<Void>
+
+    @POST("/lesson/add/student")
+    fun addLessonAsStudent(@Query("idOfStudent") idOfTeacher: Int,
                            @Query("info") info : String,
                            @Query("startTime") startTime : Long,
                            @Query("paymentValue") paymentValue : Int,

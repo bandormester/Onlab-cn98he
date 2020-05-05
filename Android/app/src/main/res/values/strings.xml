@@ -17,4 +17,6 @@
     <string name="take_photo">Take Photo</string>
     <string name="register">Register</string>
     <string name="log_in">Log in</string>
+    <string name="teach_something_else">Teach something else!</string>
+    <string name="learn_something_else">Learn something else!</string>
 </resources>

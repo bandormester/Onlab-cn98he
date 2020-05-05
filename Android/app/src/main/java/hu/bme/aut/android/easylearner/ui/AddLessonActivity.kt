@@ -134,25 +134,47 @@ class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
             Log.d("datum",Date(chosenDate.time).date.toString()+"-"+Date(chosenDate.time).hours.toString()+"-"+Date(chosenDate.time).minutes.toString())
 
             RetrofitClient.buildLessonService()
-            RetrofitClient.lessonService!!.addLessonAsTeacher(1,
-                tvInfos.text.toString(),
-                chosenDate.time,
-                Integer.parseInt(etPaymentValue.text.toString()),
-                levels[spLevel.selectedItemPosition].id,
-                topics[spTopic.selectedItemPosition].id
+            if(asTeacher){
+                RetrofitClient.lessonService!!.addLessonAsTeacher(1,
+                    tvInfos.text.toString(),
+                    chosenDate.time,
+                    Integer.parseInt(etPaymentValue.text.toString()),
+                    levels[spLevel.selectedItemPosition].id,
+                    topics[spTopic.selectedItemPosition].id
                 ).enqueue(object : Callback<Void>{
-                override fun onFailure(call: Call<Void>, t: Throwable) {
-                    Log.d("retrofit", t.message)
-                    Log.d("retrofit", t.localizedMessage)
-                    Log.d("retrofit", t.cause.toString())
-                }
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                        Log.d("retrofit", t.message)
+                        Log.d("retrofit", t.localizedMessage)
+                        Log.d("retrofit", t.cause.toString())
+                    }
 
-                override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                    Log.d("retrofit", response.code().toString())
-                    Log.d("retrofit",response.message())
-                }
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                        Log.d("retrofit", response.code().toString())
+                        Log.d("retrofit",response.message())
+                    }
 
-            })
+                })
+            } else{
+                RetrofitClient.lessonService!!.addLessonAsStudent(1,
+                    tvInfos.text.toString(),
+                    chosenDate.time,
+                    Integer.parseInt(etPaymentValue.text.toString()),
+                    levels[spLevel.selectedItemPosition].id,
+                    topics[spTopic.selectedItemPosition].id
+                ).enqueue(object : Callback<Void>{
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                        Log.d("retrofit", t.message)
+                        Log.d("retrofit", t.localizedMessage)
+                        Log.d("retrofit", t.cause.toString())
+                    }
+
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                        Log.d("retrofit", response.code().toString())
+                        Log.d("retrofit",response.message())
+                    }
+
+                })
+            }
             val returnIntent = Intent()
             setResult(Activity.RESULT_OK, returnIntent)
             finish()
