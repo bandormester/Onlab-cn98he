@@ -1,6 +1,7 @@
 package hu.bme.aut.android.easylearner.ui
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -88,9 +89,15 @@ class TeachLessonFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
     override fun onLessonSelected(lesson: Lesson, position: Int) {
         val intent = Intent(activity, LessonDetailsActivity::class.java)
         intent.putExtra("lesson", lesson)
-        intent.putExtra("asTeacher", false)
+        intent.putExtra("asTeacher", true)
         startActivity(intent)
         Toast.makeText(activity, "Lesson clicked "+lesson.teacherName, Toast.LENGTH_LONG).show()
+    }
+
+    override fun onProfileClicked(profileId: Int) {
+        //Toast.makeText(this.activity, "profile", Toast.LENGTH_LONG).show()
+        val dialog = MyProfileFragment()
+        dialog.show(fragmentManager, "mydialog")
     }
 
 

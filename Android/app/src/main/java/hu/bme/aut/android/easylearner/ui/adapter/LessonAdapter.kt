@@ -27,6 +27,7 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
 
     interface OnLessonClickedListener{
         fun onLessonSelected(lesson: Lesson, position: Int)
+        fun onProfileClicked(profileId: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LessonAdapter.LessonHolder {
@@ -98,6 +99,32 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
             lessonView.setOnClickListener{
                 listener?.onLessonSelected(lesson!!, position!!)
             }
+            if(asTeacher){
+                ivTeacherPic.setOnClickListener{
+                    listener?.onProfileClicked(lesson!!.studentId)
+                }
+
+                tvTeacherName.setOnClickListener{
+                    listener?.onProfileClicked(lesson!!.studentId)
+                }
+
+                ivRating.setOnClickListener{
+                    listener?.onProfileClicked(lesson!!.studentId)
+                }
+            }else{
+                ivTeacherPic.setOnClickListener{
+                    listener?.onProfileClicked(lesson!!.teacherId)
+                }
+
+                tvTeacherName.setOnClickListener{
+                    listener?.onProfileClicked(lesson!!.teacherId)
+                }
+
+                ivRating.setOnClickListener{
+                    listener?.onProfileClicked(lesson!!.teacherId)
+                }
+            }
+
         }
 
     }

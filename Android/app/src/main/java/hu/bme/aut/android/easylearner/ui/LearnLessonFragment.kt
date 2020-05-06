@@ -98,5 +98,11 @@ class LearnLessonFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
         Toast.makeText(activity, "Lesson clicked "+lesson.teacherName, Toast.LENGTH_LONG).show()
     }
 
+    override fun onProfileClicked(profileId: Int) {
+        //Toast.makeText(this.activity, "profile", Toast.LENGTH_LONG).show()
+        val dialog = MyProfileFragment()
+        dialog.show(fragmentManager, "mydialog")
+    }
+
 
 }

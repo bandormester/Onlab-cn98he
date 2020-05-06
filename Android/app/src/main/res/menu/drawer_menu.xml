@@ -34,4 +34,19 @@
             </menu>
         </item>
 
+        <item android:title="User">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/nav_my_profile"
+                        android:icon="@drawable/ic_brush_black_24dp"
+                        android:title="Lessons" />
+                    <item
+                        android:id="@+id/nav_my_lessons"
+                        android:icon="@drawable/ic_group_black_24dp"
+                        android:title="Lectures" />
+                </group>
+            </menu>
+        </item>
+
 </menu>
