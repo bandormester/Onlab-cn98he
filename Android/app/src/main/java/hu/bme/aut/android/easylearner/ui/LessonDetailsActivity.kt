@@ -1,5 +1,6 @@
 package hu.bme.aut.android.easylearner.ui
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.request.RequestOptions
 import hu.bme.aut.android.easylearner.R
+import hu.bme.aut.android.easylearner.model.LearnerProfile
 import hu.bme.aut.android.easylearner.model.Lesson
 import hu.bme.aut.android.easylearner.retrofit.RetrofitClient
 import kotlinx.android.synthetic.main.activity_add_lesson.*
@@ -25,9 +27,11 @@ class LessonDetailsActivity : AppCompatActivity() {
 
         val lesson = intent.getSerializableExtra("lesson") as Lesson
         val asTeacher = intent.getBooleanExtra("asTeacher", false)
+        val ownerId : Int
 
         if(!asTeacher){
             tvDetailsName.text = lesson.teacherName
+            ownerId = lesson.teacherId
 
             val picUrl = "http://10.0.2.2:8090/user/pic/"+lesson.teacherName.hashCode()
             val glideUrl = GlideUrl(picUrl)
@@ -38,6 +42,7 @@ class LessonDetailsActivity : AppCompatActivity() {
                 .into(ivDetailsProfile)
         }else{
             tvDetailsName.text = lesson.studentName
+            ownerId = lesson.studentId
 
             val picUrl = "http://10.0.2.2:8090/user/pic/"+lesson.studentName.hashCode()
             val glideUrl = GlideUrl(picUrl)
@@ -87,6 +92,31 @@ class LessonDetailsActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     Log.d("retrofit", response.code().toString())
                     Log.d("retrofit",response.message())
+                }
+
+            })
+        }
+
+        ivDetailsProfile.setOnClickListener{
+            RetrofitClient.buildLessonService()
+            RetrofitClient.lessonService!!.getProfileRating(ownerId).enqueue(object : Callback<LearnerProfile>{
+                override fun onFailure(call: Call<LearnerProfile>, t: Throwable) {
+                    Log.d("retrofit",t.message)
+                }
+
+                override fun onResponse(
+                    call: Call<LearnerProfile>,
+                    response: Response<LearnerProfile>
+                ) {
+                    Log.d("retrofit", response.code().toString())
+                    Log.d("retrofit",response.message())
+
+                    val learnerProfile = response.body()
+                    if(learnerProfile!=null){
+                        val dialog = MyProfileFragment(this@LessonDetailsActivity, learnerProfile)
+                        dialog.show()
+                    }
+
                 }
 
             })

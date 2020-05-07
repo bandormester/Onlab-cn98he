@@ -1,9 +1,6 @@
 package hu.bme.aut.android.easylearner.retrofit
 
-import hu.bme.aut.android.easylearner.model.Lesson
-import hu.bme.aut.android.easylearner.model.Level
-import hu.bme.aut.android.easylearner.model.Rating
-import hu.bme.aut.android.easylearner.model.Topic
+import hu.bme.aut.android.easylearner.model.*
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -58,4 +55,7 @@ interface RetroLessons {
 
     @GET("/rating/{id}")
     fun getRating(@Path("id") id : Int) : Call<List<Rating>>
+
+    @GET("/rating/profile/{id}")
+    fun getProfileRating(@Path("id") id : Int) : Call<LearnerProfile>
 }

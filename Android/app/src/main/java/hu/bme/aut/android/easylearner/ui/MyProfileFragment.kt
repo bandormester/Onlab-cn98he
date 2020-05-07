@@ -20,6 +20,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.request.RequestOptions
 import hu.bme.aut.android.easylearner.R
+import hu.bme.aut.android.easylearner.model.LearnerProfile
 import hu.bme.aut.android.easylearner.model.Lesson
 import hu.bme.aut.android.easylearner.model.ProfileDetails
 import hu.bme.aut.android.easylearner.retrofit.RetrofitClient
@@ -31,12 +32,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MyProfileFragment(activity : Activity, adapter: RatingAdapter, profileDetails: ProfileDetails) : Dialog(activity) {
+class MyProfileFragment(activity : Activity, //var profileDetails = profileDetails
+                        var learnerProfile: LearnerProfile
+) : Dialog(activity) {
 
 
     var myActivity = activity
-    var adapter = adapter
-    var profileDetails = profileDetails
+    var adapter = RatingAdapter(activity!!.baseContext)
 
 
     internal var recyclerView: RecyclerView? = null
@@ -49,16 +51,15 @@ class MyProfileFragment(activity : Activity, adapter: RatingAdapter, profileDeta
         setContentView(R.layout.fragment_my_profile)
 
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        adapter.addRatingList(learnerProfile.ratings)
 
-        Log.d("math", profileDetails.comm.toString())
+        tvProfileCommunication.text = myActivity.getString(R.string.profile_communication, learnerProfile.communication)
+        tvProfileKnowledge.text = myActivity.getString(R.string.profile_knowledge, learnerProfile.knowledge)
+        tvProfilePunctiality.text = myActivity.getString(R.string.profile_punctuality, learnerProfile.punctuality)
+        tvProfileName.text = learnerProfile.fullName
+        tvProfileUsername.text = learnerProfile.userName
 
-        tvProfileCommunication.text = myActivity.getString(R.string.profile_communication, profileDetails.comm)
-        tvProfileKnowledge.text = myActivity.getString(R.string.profile_knowledge, profileDetails.know)
-        tvProfilePunctiality.text = myActivity.getString(R.string.profile_punctuality, profileDetails.punc)
-        tvProfileName.text = profileDetails.name
-
-        val picUrl = "http://10.0.2.2:8090/user/pic/"+profileDetails.name.hashCode()
-        val glideUrl = GlideUrl(picUrl)
+        val glideUrl = GlideUrl(learnerProfile.picUrl)
         val option = RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
         Glide.with(this.context)
             .load(glideUrl)
