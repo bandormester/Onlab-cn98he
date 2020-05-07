@@ -6,5 +6,5 @@ data class Rating(
     val punctuality : Int = 0,
     val knowledge : Int = 0,
     val teacherId : Int = 0,
-    val topicName : String = ""
+    val topicId : Int = 0
 ){}

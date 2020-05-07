@@ -1,6 +1,7 @@
 package hu.bme.aut.android.easylearner.ui.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +29,15 @@ class RatingAdapter(con : Context): RecyclerView.Adapter<RatingAdapter.RatingHol
 
     override fun onBindViewHolder(holder: RatingAdapter.RatingHolder, position: Int) {
         val rating = ratings[position]
-        holder.tvRatingDate.text = rating.topicName
+        when(rating.topicId){
+            1 -> holder.tvRatingDate.text = "Math"
+            2 -> holder.tvRatingDate.text = "Physics"
+            3 -> holder.tvRatingDate.text = "Chemistry"
+            4 -> holder.tvRatingDate.text = "IT"
+            5 -> holder.tvRatingDate.text = "Literature"
+            6 -> holder.tvRatingDate.text = "Biology"
+        }
+        Log.d("retrofit", "proba")
         holder.tvRatingText.text = rating.text
     }
 

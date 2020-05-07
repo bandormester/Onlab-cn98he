@@ -59,7 +59,7 @@ class MyProfileFragment(activity : Activity, //var profileDetails = profileDetai
         tvProfileName.text = learnerProfile.fullName
         tvProfileUsername.text = learnerProfile.userName
 
-        val glideUrl = GlideUrl(learnerProfile.picUrl)
+        val glideUrl = GlideUrl("http://10.0.2.2:8090/user/pic/"+learnerProfile.picUrl)
         val option = RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
         Glide.with(this.context)
             .load(glideUrl)

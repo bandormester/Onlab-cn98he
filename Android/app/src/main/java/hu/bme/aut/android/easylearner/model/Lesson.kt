@@ -17,4 +17,5 @@ class Lesson : Serializable{
     val payment : Int = 0
     val levelName : String = ""
     val topicName : String = ""
+    val ownerId : Int = 0
 }
