@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorOrange"
-        android:text="username"
+        android:text="Ratings"
         android:padding="4dp"
         android:gravity="center"
         android:background="@color/colorPrimary"

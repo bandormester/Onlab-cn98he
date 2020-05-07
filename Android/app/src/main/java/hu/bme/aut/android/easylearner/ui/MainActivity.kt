@@ -66,7 +66,7 @@ public lateinit var retroTest : RetroTest
         Log.d("valami",list.size.toString())
         adapter.addLessonList(list)
 
-        val dialog = MyProfileFragment(this@MainActivity,adapter)
-        dialog.show()
+        //val dialog = MyProfileFragment(this@MainActivity,adapter)
+        //dialog.show()
     }
 }

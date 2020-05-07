@@ -19,4 +19,7 @@
     <string name="log_in">Log in</string>
     <string name="teach_something_else">Teach something else!</string>
     <string name="learn_something_else">Learn something else!</string>
+    <string name="profile_communication">Communication: %.1f</string>
+    <string name="profile_punctuality">Punctuality: %.1f</string>
+    <string name="profile_knowledge">Knowledge: %.1f</string>
 </resources>

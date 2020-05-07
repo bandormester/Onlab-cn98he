@@ -2,6 +2,7 @@ package hu.bme.aut.android.easylearner.retrofit
 
 import hu.bme.aut.android.easylearner.model.Lesson
 import hu.bme.aut.android.easylearner.model.Level
+import hu.bme.aut.android.easylearner.model.Rating
 import hu.bme.aut.android.easylearner.model.Topic
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -54,4 +55,7 @@ interface RetroLessons {
     @PUT("/lesson/book/student")
     fun bookLessonAsTeacher(@Query("lessonId") lessonId : Int,
                             @Query("studentId") studentId : Int) : Call<Void>
+
+    @GET("/rating/{id}")
+    fun getRating(@Path("id") id : Int) : Call<List<Rating>>
 }

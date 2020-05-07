@@ -13,8 +13,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import hu.bme.aut.android.easylearner.R
 import hu.bme.aut.android.easylearner.model.Lesson
+import hu.bme.aut.android.easylearner.model.ProfileDetails
+import hu.bme.aut.android.easylearner.model.Rating
 import hu.bme.aut.android.easylearner.retrofit.RetrofitClient
 import hu.bme.aut.android.easylearner.ui.adapter.LessonAdapter
+import hu.bme.aut.android.easylearner.ui.adapter.RatingAdapter
 import kotlinx.android.synthetic.main.fragment_learn_lesson.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -94,10 +97,44 @@ class TeachLessonFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
         Toast.makeText(activity, "Lesson clicked "+lesson.teacherName, Toast.LENGTH_LONG).show()
     }
 
-    override fun onProfileClicked(profileId: Int) {
+    override fun onProfileClicked(profileId: Int, profileName : String) {
         //Toast.makeText(this.activity, "profile", Toast.LENGTH_LONG).show()
-        val dialog = MyProfileFragment(activity as Activity, adapter)
-        dialog.show()
+        val ratingAdapter = RatingAdapter(activity!!.baseContext)
+
+        RetrofitClient.buildLessonService()
+        RetrofitClient.lessonService!!.getRating(profileId).enqueue(object :
+            Callback<List<Rating>> {
+            override fun onFailure(call: Call<List<Rating>>, t: Throwable) {
+                Log.d("retrofit",t.message)
+            }
+
+            override fun onResponse(call: Call<List<Rating>>, response: Response<List<Rating>>) {
+                Log.d("retrofit", response.code().toString())
+                Log.d("retrofit",response.message())
+
+                val ratingList = response.body()
+                if (ratingList != null) {
+                    var profileDetails = ProfileDetails(profileName)
+
+                    for(r : Rating in ratingList){
+                        profileDetails.comm+=r.communication
+                        profileDetails.punc+=r.punctuality
+                        profileDetails.know+=r.knowledge
+                    }
+                    profileDetails.comm /= ratingList.size
+                    profileDetails.punc /= ratingList.size
+                    profileDetails.know /= ratingList.size
+
+                    profileDetails.comm = Math.round(profileDetails.comm*10)/10.0
+                    profileDetails.punc = Math.round(profileDetails.punc*10)/10.0
+                    profileDetails.know = Math.round(profileDetails.know*10)/10.0
+
+                    ratingAdapter.addRatingList(ratingList)
+                    val dialog = MyProfileFragment(activity as Activity, ratingAdapter, profileDetails)
+                    dialog.show()
+                }
+            }
+        })
     }
 
 

@@ -27,7 +27,7 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
 
     interface OnLessonClickedListener{
         fun onLessonSelected(lesson: Lesson, position: Int)
-        fun onProfileClicked(profileId: Int)
+        fun onProfileClicked(profileId: Int, profileName : String)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LessonAdapter.LessonHolder {
@@ -101,27 +101,27 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
             }
             if(asTeacher){
                 ivTeacherPic.setOnClickListener{
-                    listener?.onProfileClicked(lesson!!.studentId)
+                    listener?.onProfileClicked(lesson!!.studentId, lesson!!.studentName)
                 }
 
                 tvTeacherName.setOnClickListener{
-                    listener?.onProfileClicked(lesson!!.studentId)
+                    listener?.onProfileClicked(lesson!!.studentId, lesson!!.studentName)
                 }
 
                 ivRating.setOnClickListener{
-                    listener?.onProfileClicked(lesson!!.studentId)
+                    listener?.onProfileClicked(lesson!!.studentId, lesson!!.studentName)
                 }
             }else{
                 ivTeacherPic.setOnClickListener{
-                    listener?.onProfileClicked(lesson!!.teacherId)
+                    listener?.onProfileClicked(lesson!!.teacherId, lesson!!.teacherName)
                 }
 
                 tvTeacherName.setOnClickListener{
-                    listener?.onProfileClicked(lesson!!.teacherId)
+                    listener?.onProfileClicked(lesson!!.teacherId, lesson!!.teacherName)
                 }
 
                 ivRating.setOnClickListener{
-                    listener?.onProfileClicked(lesson!!.teacherId)
+                    listener?.onProfileClicked(lesson!!.teacherId, lesson!!.teacherName)
                 }
             }
 

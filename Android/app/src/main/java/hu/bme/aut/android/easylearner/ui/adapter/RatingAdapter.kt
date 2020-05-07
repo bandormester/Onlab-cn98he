@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.android.easylearner.R
-import hu.bme.aut.android.easylearner.model.Lesson
 import hu.bme.aut.android.easylearner.model.Rating
+import kotlinx.android.synthetic.main.row_rating.view.*
 
 class RatingAdapter(con : Context): RecyclerView.Adapter<RatingAdapter.RatingHolder>() {
 
@@ -20,11 +20,21 @@ class RatingAdapter(con : Context): RecyclerView.Adapter<RatingAdapter.RatingHol
 
     override fun getItemCount() = ratings.size
 
+    fun addRatingList(r : List<Rating>){
+        val size = itemCount
+        ratings.addAll(r)
+        notifyItemRangeChanged(size, itemCount)
+    }
+
     override fun onBindViewHolder(holder: RatingAdapter.RatingHolder, position: Int) {
         val rating = ratings[position]
+        holder.tvRatingDate.text = rating.topicName
+        holder.tvRatingText.text = rating.text
     }
 
     inner class RatingHolder(ratingView : View) : RecyclerView.ViewHolder(ratingView){
+        val tvRatingText = ratingView.tvRatingText
+        val tvRatingDate = ratingView.tvRatingDate
 
     }
 }
