@@ -1,5 +1,9 @@
 package hu.bme.aut.android.easylearner.ui
 
+import android.app.Activity
+import android.app.Dialog
+import android.content.Context
+import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -9,6 +13,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.android.easylearner.R
 import hu.bme.aut.android.easylearner.model.Lesson
 import hu.bme.aut.android.easylearner.retrofit.RetrofitClient
@@ -19,53 +25,30 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MyProfileFragment : DialogFragment() {
+class MyProfileFragment(activity : Activity, adapter: LessonAdapter) : Dialog(activity) {
 
-    private lateinit var adapter : LessonAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+    var myActivity = activity
+    var adapter = adapter
+
+
+    internal var recyclerView: RecyclerView? = null
+    private var mLayoutManager: RecyclerView.LayoutManager? = null
+
+    override fun onCreate(
         savedInstanceState: Bundle?
-    ): View? {
-        val v = inflater.inflate(R.layout.fragment_my_profile, container, false)
+    ){
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_my_profile)
 
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        v.setOnClickListener{
-            dismiss()
-        }
+        recyclerView = recyclerMyProfile
+        mLayoutManager = LinearLayoutManager(myActivity)
+        recyclerView?.layoutManager = mLayoutManager
+        recyclerView?.adapter = adapter
 
-        RetrofitClient.buildLessonService()
-        RetrofitClient.lessonService!!.getLessonsAsTeacher().enqueue(object :
-            Callback<List<Lesson>> {
-            override fun onFailure(call: Call<List<Lesson>>, t: Throwable) {
-                Log.d("retrofit",t.message)
-            }
-
-            override fun onResponse(call: Call<List<Lesson>>, response: Response<List<Lesson>>) {
-                Log.d("retrofit", response.code().toString())
-                Log.d("retrofit",response.message())
-
-                val lessonList = response.body()
-                if (lessonList != null) {
-                    setupRecyclerView(lessonList)
-                }
-            }
-        })
-
-
-
-
-        return v;
-    }
-
-    fun setupRecyclerView(list : List<Lesson>){
-        adapter = LessonAdapter(activity!!.baseContext)
-        adapter.clear()
-        adapter.asTeacher = true
-        Log.d("valami",list.size.toString())
-        adapter.addLessonList(list)
-        recyclerMyProfile.adapter = adapter
+        setCanceledOnTouchOutside(true)
+        btDialogDone.setOnClickListener { dismiss() }
     }
 }
