@@ -25,6 +25,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLearnerDetails" />
 
+    <ImageView
+        android:id="@+id/ivDetailsRating"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_star_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDetailsRating"
+        app:layout_constraintEnd_toStartOf="@+id/tvDetailsRating"
+        app:layout_constraintStart_toStartOf="@+id/tvDetailsName"
+        app:layout_constraintTop_toTopOf="@+id/tvDetailsRating" />
+
+    <TextView
+        android:id="@+id/tvDetailsRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4.2"
+        app:layout_constraintBottom_toTopOf="@+id/tvDetailsName"
+        app:layout_constraintEnd_toEndOf="@+id/tvDetailsName"
+        app:layout_constraintStart_toEndOf="@+id/ivDetailsRating"
+        app:layout_constraintTop_toTopOf="@+id/ivDetailsProfile" />
+
     <TextView
         android:id="@+id/tvDetailsName"
         android:layout_width="wrap_content"
@@ -34,8 +54,7 @@
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/ivDetailsProfile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivDetailsProfile"
-        app:layout_constraintTop_toTopOf="@+id/ivDetailsProfile" />
+        app:layout_constraintStart_toEndOf="@+id/ivDetailsProfile" />
 
     <ImageView
         android:id="@+id/ivDetailsTopic"

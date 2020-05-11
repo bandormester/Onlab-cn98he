@@ -17,9 +17,13 @@ import kotlinx.android.synthetic.main.activity_lesson_details.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.util.*
 
 class LessonDetailsActivity : AppCompatActivity() {
+
+    private var learnerProfile : LearnerProfile? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,6 +75,36 @@ class LessonDetailsActivity : AppCompatActivity() {
             "BIOLOGY" -> ivDetailsTopic.setImageResource(R.mipmap.ic_biology)
         }
 
+        RetrofitClient.buildLessonService()
+        RetrofitClient.lessonService!!.getProfileRating(ownerId).enqueue(object : Callback<LearnerProfile>{
+            override fun onFailure(call: Call<LearnerProfile>, t: Throwable) {
+                Log.d("retrofit",t.message)
+            }
+
+            override fun onResponse(
+                call: Call<LearnerProfile>,
+                response: Response<LearnerProfile>
+            ) {
+                Log.d("retrofit", response.code().toString())
+                Log.d("retrofit",response.message())
+
+                learnerProfile = response.body()
+                var dec : BigDecimal? = null
+                if(learnerProfile!=null) {
+                    val rating =
+                        (((learnerProfile!!.communication + learnerProfile!!.knowledge + learnerProfile!!.punctuality)/3)*10)/10.0
+                    dec = BigDecimal(rating).setScale(2, RoundingMode.HALF_EVEN)
+                }
+                tvDetailsRating.text = dec.toString()
+                //if(learnerProfile!=null){
+                //    val dialog = MyProfileFragment(this@LessonDetailsActivity, learnerProfile!!)
+                //    dialog.show()
+                //}
+
+            }
+
+        })
+
         val date = Date(lesson.startTime)
         tvDetailsDate.text = date.year.toString()+"-"+(date.month+1).toString()+"-"+date.date.toString()+" / "+date.hours.toString()+":"+date.minutes.toString()
 
@@ -98,28 +132,10 @@ class LessonDetailsActivity : AppCompatActivity() {
         }
 
         ivDetailsProfile.setOnClickListener{
-            RetrofitClient.buildLessonService()
-            RetrofitClient.lessonService!!.getProfileRating(ownerId).enqueue(object : Callback<LearnerProfile>{
-                override fun onFailure(call: Call<LearnerProfile>, t: Throwable) {
-                    Log.d("retrofit",t.message)
-                }
-
-                override fun onResponse(
-                    call: Call<LearnerProfile>,
-                    response: Response<LearnerProfile>
-                ) {
-                    Log.d("retrofit", response.code().toString())
-                    Log.d("retrofit",response.message())
-
-                    val learnerProfile = response.body()
-                    if(learnerProfile!=null){
-                        val dialog = MyProfileFragment(this@LessonDetailsActivity, learnerProfile)
-                        dialog.show()
-                    }
-
-                }
-
-            })
+            if(learnerProfile!=null){
+                val dialog = MyProfileFragment(this@LessonDetailsActivity, learnerProfile!!)
+                dialog.show()
+            }
         }
     }
 }

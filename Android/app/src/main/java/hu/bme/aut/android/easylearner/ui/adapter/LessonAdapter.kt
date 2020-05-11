@@ -14,8 +14,16 @@ import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
 import com.bumptech.glide.request.RequestOptions
 import hu.bme.aut.android.easylearner.R
+import hu.bme.aut.android.easylearner.model.LearnerProfile
 import hu.bme.aut.android.easylearner.model.Lesson
+import hu.bme.aut.android.easylearner.retrofit.RetrofitClient
+import kotlinx.android.synthetic.main.activity_lesson_details.*
 import kotlinx.android.synthetic.main.row_lesson.view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.util.*
 
 class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHolder>(){
@@ -38,15 +46,18 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
     override fun onBindViewHolder(holder: LessonAdapter.LessonHolder, position: Int) {
         val lesson = lessons[position]
         val date = Date(lesson.startTime)
+        val ownerId : Int
         holder.lesson = lesson
         holder.position = position
         var picUrl = ""
         if(!asTeacher){
             holder.tvTeacherName.text = lesson.teacherName
             picUrl = "http://10.0.2.2:8090/user/pic/"+lesson.teacherName.hashCode()
+            ownerId = lesson.teacherId
         } else{
             holder.tvTeacherName.text = lesson.studentName
             picUrl = "http://10.0.2.2:8090/user/pic/"+lesson.studentName.hashCode()
+            ownerId = lesson.studentId
         }
 
         holder.ivTeacherPic.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_launcher_background))
@@ -65,6 +76,37 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
         holder.tvPayment.text = paymentText
         holder.tvRating.text = "5.0" //TODO
         holder.tvInfo.text = lesson.info
+
+        RetrofitClient.buildLessonService()
+        RetrofitClient.lessonService!!.getProfileRating(ownerId).enqueue(object :
+            Callback<LearnerProfile> {
+            override fun onFailure(call: Call<LearnerProfile>, t: Throwable) {
+                Log.d("retrofit",t.message)
+            }
+
+            override fun onResponse(
+                call: Call<LearnerProfile>,
+                response: Response<LearnerProfile>
+            ) {
+                Log.d("retrofit", response.code().toString())
+                Log.d("retrofit",response.message())
+
+                val learnerProfile = response.body()
+                var dec : BigDecimal? = null
+                if(learnerProfile!=null) {
+                    val rating =
+                        (((learnerProfile!!.communication + learnerProfile!!.knowledge + learnerProfile!!.punctuality)/3)*10)/10.0
+                    dec = BigDecimal(rating).setScale(1, RoundingMode.HALF_EVEN)
+                }
+                holder.tvRating.text = dec.toString()
+                //if(learnerProfile!=null){
+                //    val dialog = MyProfileFragment(this@LessonDetailsActivity, learnerProfile!!)
+                //    dialog.show()
+                //}
+
+            }
+
+        })
     }
 
     override fun getItemCount() = lessons.size
