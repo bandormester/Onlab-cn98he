@@ -36,6 +36,7 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
     interface OnLessonClickedListener{
         fun onLessonSelected(lesson: Lesson, position: Int)
         fun onProfileClicked(profileId: Int, profileName : String)
+        fun onLessonLongClicked(lesson: Lesson, position : Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LessonAdapter.LessonHolder {
@@ -140,6 +141,10 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
         init{
             lessonView.setOnClickListener{
                 listener?.onLessonSelected(lesson!!, position!!)
+            }
+            lessonView.setOnLongClickListener {
+                listener?.onLessonLongClicked(lesson!!, position!!)
+                return@setOnLongClickListener true
             }
             if(asTeacher){
                 ivTeacherPic.setOnClickListener{

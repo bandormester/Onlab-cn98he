@@ -13,7 +13,7 @@
         android:layout_height="40dp"
         android:text="Booked"
         android:background="@drawable/list_tab_button_selected"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerMyLessons"
         app:layout_constraintStart_toEndOf="@+id/btFreeLessons" />
 
     <Button
@@ -22,7 +22,7 @@
         android:layout_height="40dp"
         android:background="@drawable/list_tab_button"
         android:text="Free"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerMyLessons"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -32,21 +32,22 @@
         android:background="@drawable/list_tab_button"
         android:text="Finished"
         app:layout_constraintStart_toEndOf="@+id/btBookedLessons"
-        app:layout_constraintBottom_toTopOf="@id/recyclerView"/>
+        app:layout_constraintBottom_toTopOf="@id/recyclerMyLessons"/>
 
     <Switch
+        android:id="@+id/swAsTeacher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorYellow"
         android:text="as Teacher  "
         android:clickable="false"
-        app:layout_constraintBottom_toTopOf="@id/recyclerView"
+        app:layout_constraintBottom_toTopOf="@id/recyclerMyLessons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btFinishedLessons"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerMyLessons"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginTop="40dp"
