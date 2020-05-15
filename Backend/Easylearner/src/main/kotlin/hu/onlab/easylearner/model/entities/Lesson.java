@@ -51,4 +51,8 @@ public class Lesson {
     @Basic
     @Column(name = "TOPICID")
     Integer TopicId;
+
+    @Basic
+    @Column(name = "OWNERID")
+    Integer OwnerId;
 }

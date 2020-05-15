@@ -16,4 +16,5 @@ public class LessonDto {
     Integer Payment;
     Integer LevelId;
     Integer TopicId;
+    Integer OwnerId;
 }

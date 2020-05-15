@@ -26,11 +26,15 @@ class LearnersController {
         return ResponseEntity.status(HttpStatus.OK).body(queryResult);
     }
 
+
+
     @GetMapping("/login")
-    ResponseEntity<String> tryLogin(@RequestParam String username,
+    ResponseEntity<Integer> tryLogin(@RequestParam String username,
                                     @RequestParam String password){
-        Boolean queryResult = learnersService.tryLogin(username, password);
-        return queryResult?ResponseEntity.status(HttpStatus.OK).body("Sikeres!"):ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sikertelen!");
+        Integer userId = 0;
+        Integer queryResult = learnersService.tryLogin(username, password, userId);
+        System.out.println("--------- USER ID = " +queryResult);
+        return queryResult!=0?ResponseEntity.status(HttpStatus.OK).body(queryResult):ResponseEntity.status(HttpStatus.NOT_FOUND).body(queryResult);
     }
 
     @GetMapping(

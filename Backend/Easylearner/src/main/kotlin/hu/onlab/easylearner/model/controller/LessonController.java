@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.print.attribute.ResolutionSyntax;
 import java.util.List;
 
 @RestController
@@ -22,6 +23,30 @@ public class LessonController {
     @GetMapping("")
     ResponseEntity<List<Lesson>> findAll(){
         List<Lesson> queryResult = lessonService.findAllQueries();
+        return ResponseEntity.status(HttpStatus.OK).body(queryResult);
+    }
+
+    @GetMapping("/my/booked/{id}")
+    ResponseEntity<List<LessonWithNamesDto>> findBookedLessons(@PathVariable Integer id){
+        List<LessonWithNamesDto> queryResult = lessonService.findBookedLessons(id);
+        return ResponseEntity.status(HttpStatus.OK).body(queryResult);
+    }
+
+    @GetMapping("/my/finished/{id}")
+    ResponseEntity<List<LessonWithNamesDto>> findFinishedLessons(@PathVariable Integer id){
+        List<LessonWithNamesDto> queryResult = lessonService.findFinishedLessons(id);
+        return ResponseEntity.status(HttpStatus.OK).body(queryResult);
+    }
+
+    @GetMapping("/my/free/teacher/{id}")
+    ResponseEntity<List<LessonWithNamesDto>> findFreeLessonsAsTeacher(@PathVariable Integer id){
+        List<LessonWithNamesDto> queryResult = lessonService.findFreeLessonsAsTeacher(id);
+        return ResponseEntity.status(HttpStatus.OK).body(queryResult);
+    }
+
+    @GetMapping("/my/free/student/{id}")
+    ResponseEntity<List<LessonWithNamesDto>> findFreeLessonsAsStudent(@PathVariable Integer id){
+        List<LessonWithNamesDto> queryResult = lessonService.findFreeLessonsAsStudent(id);
         return ResponseEntity.status(HttpStatus.OK).body(queryResult);
     }
 
@@ -67,7 +92,22 @@ public class LessonController {
     @PutMapping("/book/student")
     ResponseEntity<Void> bookLessonAsStudent(@RequestParam Integer lessonId,
                                              @RequestParam Integer studentId){
-        lessonService.bookLesson(lessonId, studentId);
+        lessonService.bookLessonAsStudent(lessonId, studentId);
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
+
+    @PutMapping("/book/teacher")
+    ResponseEntity<Void> bookLessonAsTeacher(@RequestParam Integer lessonId,
+                                             @RequestParam Integer teacherId){
+        lessonService.bookLessonAsTeacher(lessonId, teacherId);
+        return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
+
+    @PutMapping("/cancel/{lessonId}")
+    ResponseEntity<Void> cancelLesson(@PathVariable Integer lessonId,
+                                        @RequestParam Integer cancellerId){
+        lessonService.cancelLesson(lessonId, cancellerId);
+        return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
+
 }

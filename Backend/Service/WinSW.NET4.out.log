@@ -1,0 +1,130 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.4.RELEASE)
+
+2020-02-19 09:57:58.195  INFO 3832 --- [           main] h.o.E.EasylearnerApplicationKt           : Starting EasylearnerApplicationKt v0.0.1-SNAPSHOT on DESKTOP-DTVEU2O with PID 3832 (F:\Android\Work\Onlab\Backend\Service\ez-learner-service.jar started by DESKTOP-DTVEU2O$ in F:\Android\Work\Onlab\Backend\Service)
+2020-02-19 09:57:58.201  INFO 3832 --- [           main] h.o.E.EasylearnerApplicationKt           : No active profile set, falling back to default profiles: default
+2020-02-19 09:58:00.576  INFO 3832 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-02-19 09:58:00.590  INFO 3832 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-19 09:58:00.590  INFO 3832 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-02-19 09:58:01.139  INFO 3832 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-19 09:58:01.140  INFO 3832 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2818 ms
+2020-02-19 09:58:01.380  INFO 3832 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-19 09:58:01.762  INFO 3832 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-02-19 09:58:01.765  INFO 3832 --- [           main] h.o.E.EasylearnerApplicationKt           : Started EasylearnerApplicationKt in 4.276 seconds (JVM running for 5.381)
+2020-02-19 09:58:01.827  INFO 3832 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-19 09:58:01.827  INFO 3832 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-19 09:58:01.832  INFO 3832 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.4.RELEASE)
+
+2020-02-19 10:00:33.361  INFO 9656 --- [           main] h.o.E.EasylearnerApplicationKt           : Starting EasylearnerApplicationKt v0.0.1-SNAPSHOT on DESKTOP-DTVEU2O with PID 9656 (F:\Android\Work\Onlab\Backend\Service\ez-learner-service.jar started by DESKTOP-DTVEU2O$ in F:\Android\Work\Onlab\Backend\Service)
+2020-02-19 10:00:33.365  INFO 9656 --- [           main] h.o.E.EasylearnerApplicationKt           : No active profile set, falling back to default profiles: default
+2020-02-19 10:00:34.673  INFO 9656 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-02-19 10:00:34.682  INFO 9656 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-19 10:00:34.682  INFO 9656 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-02-19 10:00:34.756  INFO 9656 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-19 10:00:34.756  INFO 9656 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1334 ms
+2020-02-19 10:00:34.973  INFO 9656 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-19 10:00:35.281  INFO 9656 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-02-19 10:00:35.284  INFO 9656 --- [           main] h.o.E.EasylearnerApplicationKt           : Started EasylearnerApplicationKt in 2.318 seconds (JVM running for 2.741)
+2020-02-19 10:00:35.511  INFO 9656 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-19 10:00:35.511  INFO 9656 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-19 10:00:35.516  INFO 9656 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2020-02-19 10:21:21.353  WARN 9656 --- [nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'name' is not present]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.4.RELEASE)
+
+2020-02-19 10:37:45.689  INFO 1896 --- [           main] h.o.E.EasylearnerApplicationKt           : Starting EasylearnerApplicationKt v0.0.1-SNAPSHOT on DESKTOP-DTVEU2O with PID 1896 (F:\Android\Work\Onlab\Backend\Service\ez-learner-service.jar started by DESKTOP-DTVEU2O$ in F:\Android\Work\Onlab\Backend\Service)
+2020-02-19 10:37:45.692  INFO 1896 --- [           main] h.o.E.EasylearnerApplicationKt           : No active profile set, falling back to default profiles: default
+2020-02-19 10:37:46.943  INFO 1896 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-02-19 10:37:46.953  INFO 1896 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-19 10:37:46.953  INFO 1896 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-02-19 10:37:47.004  INFO 1896 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-19 10:37:47.004  INFO 1896 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1250 ms
+2020-02-19 10:37:47.154  INFO 1896 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-19 10:37:47.419  INFO 1896 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-02-19 10:37:47.422  INFO 1896 --- [           main] h.o.E.EasylearnerApplicationKt           : Started EasylearnerApplicationKt in 2.12 seconds (JVM running for 2.549)
+2020-02-19 11:12:51.442  INFO 1896 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-19 11:12:51.443  INFO 1896 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-19 11:12:51.471  INFO 1896 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 28 ms
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.4.RELEASE)
+
+2020-02-19 11:26:30.485  INFO 7204 --- [           main] h.o.E.EasylearnerApplicationKt           : Starting EasylearnerApplicationKt v0.0.1-SNAPSHOT on DESKTOP-DTVEU2O with PID 7204 (F:\Android\Work\Onlab\Backend\Service\ez-learner-service.jar started by DESKTOP-DTVEU2O$ in F:\Android\Work\Onlab\Backend\Service)
+2020-02-19 11:26:30.489  INFO 7204 --- [           main] h.o.E.EasylearnerApplicationKt           : No active profile set, falling back to default profiles: default
+2020-02-19 11:26:31.912  INFO 7204 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-02-19 11:26:31.923  INFO 7204 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-19 11:26:31.923  INFO 7204 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-02-19 11:26:31.980  INFO 7204 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-19 11:26:31.980  INFO 7204 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1427 ms
+2020-02-19 11:26:32.161  INFO 7204 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-19 11:26:32.639  INFO 7204 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-02-19 11:26:32.646  INFO 7204 --- [           main] h.o.E.EasylearnerApplicationKt           : Started EasylearnerApplicationKt in 2.599 seconds (JVM running for 3.067)
+2020-02-19 11:26:35.618  INFO 7204 --- [nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-19 11:26:35.618  INFO 7204 --- [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-19 11:26:35.623  INFO 7204 --- [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.4.RELEASE)
+
+2020-02-19 19:25:16.324  INFO 10060 --- [           main] h.o.E.EasylearnerApplicationKt           : Starting EasylearnerApplicationKt v0.0.1-SNAPSHOT on DESKTOP-DTVEU2O with PID 10060 (F:\Android\Work\Onlab\Backend\Service\ez-learner-service.jar started by DESKTOP-DTVEU2O$ in F:\Android\Work\Onlab\Backend\Service)
+2020-02-19 19:25:16.331  INFO 10060 --- [           main] h.o.E.EasylearnerApplicationKt           : No active profile set, falling back to default profiles: default
+2020-02-19 19:25:19.244  INFO 10060 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-02-19 19:25:19.274  INFO 10060 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-19 19:25:19.275  INFO 10060 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-02-19 19:25:19.408  INFO 10060 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-19 19:25:19.409  INFO 10060 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2844 ms
+2020-02-19 19:25:19.763  INFO 10060 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-19 19:25:20.492  INFO 10060 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-02-19 19:25:20.495  INFO 10060 --- [           main] h.o.E.EasylearnerApplicationKt           : Started EasylearnerApplicationKt in 5.026 seconds (JVM running for 6.746)
+2020-02-19 19:25:43.930  INFO 10060 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-19 19:25:43.930  INFO 10060 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-19 19:25:43.954  INFO 10060 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 24 ms
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.4.RELEASE)
+
+2020-02-19 19:32:34.588  INFO 6128 --- [           main] h.o.E.EasylearnerApplicationKt           : Starting EasylearnerApplicationKt v0.0.1-SNAPSHOT on DESKTOP-DTVEU2O with PID 6128 (F:\Android\Work\Onlab\Backend\Service\ez-learner-service.jar started by DESKTOP-DTVEU2O$ in F:\Android\Work\Onlab\Backend\Service)
+2020-02-19 19:32:34.593  INFO 6128 --- [           main] h.o.E.EasylearnerApplicationKt           : No active profile set, falling back to default profiles: default
+2020-02-19 19:32:36.579  INFO 6128 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-02-19 19:32:36.596  INFO 6128 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-19 19:32:36.597  INFO 6128 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-02-19 19:32:36.697  INFO 6128 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-19 19:32:36.697  INFO 6128 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2007 ms
+2020-02-19 19:32:36.918  INFO 6128 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-19 19:32:37.398  INFO 6128 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-02-19 19:32:37.400  INFO 6128 --- [           main] h.o.E.EasylearnerApplicationKt           : Started EasylearnerApplicationKt in 3.367 seconds (JVM running for 4.054)
