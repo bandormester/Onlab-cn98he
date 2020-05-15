@@ -29,6 +29,7 @@ class LessonDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lesson_details)
 
+        val userid = intent.getIntExtra("userid",0)
         val lesson = intent.getSerializableExtra("lesson") as Lesson
         val asTeacher = intent.getBooleanExtra("asTeacher", false)
         val ownerId : Int
@@ -113,22 +114,43 @@ class LessonDetailsActivity : AppCompatActivity() {
 
         btBookLesson.setOnClickListener {
             RetrofitClient.buildLessonService()
-            RetrofitClient.lessonService!!.bookLessonAsTeacher(lesson.id,
-                //user.id
-                22  //TODO
-            ).enqueue(object : Callback<Void> {
-                override fun onFailure(call: Call<Void>, t: Throwable) {
-                    Log.d("retrofit", t.message)
-                    Log.d("retrofit", t.localizedMessage)
-                    Log.d("retrofit", t.cause.toString())
-                }
+            if(asTeacher) {
+                RetrofitClient.lessonService!!.bookLessonAsTeacher(
+                    lesson.id,
+                    //user.id
+                    userid  //TODO
+                ).enqueue(object : Callback<Void> {
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                        Log.d("retrofit", t.message)
+                        Log.d("retrofit", t.localizedMessage)
+                        Log.d("retrofit", t.cause.toString())
+                    }
 
-                override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                    Log.d("retrofit", response.code().toString())
-                    Log.d("retrofit",response.message())
-                }
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                        Log.d("retrofit", response.code().toString())
+                        Log.d("retrofit", response.message())
+                    }
 
-            })
+                })
+            }else {
+                RetrofitClient.lessonService!!.bookLessonAsStudent(
+                    lesson.id,
+                    //user.id
+                    userid  //TODO
+                ).enqueue(object : Callback<Void> {
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                        Log.d("retrofit", t.message)
+                        Log.d("retrofit", t.localizedMessage)
+                        Log.d("retrofit", t.cause.toString())
+                    }
+
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                        Log.d("retrofit", response.code().toString())
+                        Log.d("retrofit", response.message())
+                    }
+
+                })
+            }
         }
 
         ivDetailsProfile.setOnClickListener{

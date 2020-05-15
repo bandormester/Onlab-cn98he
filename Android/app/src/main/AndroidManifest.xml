@@ -14,17 +14,17 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.LessonDetailsActivity"></activity>
         <activity android:name=".ui.login.RegisterActivity" />
-        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.login.LoginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ui.AddLessonActivity" />
         <activity
             android:name=".ui.Drawer"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

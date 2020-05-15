@@ -53,7 +53,7 @@ class MyLessonsFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
 
         swAsTeacher.setOnCheckedChangeListener(){ compoundButton: CompoundButton, b: Boolean ->
             if(swAsTeacher.isChecked){
-                RetrofitClient.lessonService!!.getFreeLessonsAsTeacher(22).enqueue(object : Callback<List<Lesson>>{
+                RetrofitClient.lessonService!!.getFreeLessonsAsTeacher((activity as Drawer).userId).enqueue(object : Callback<List<Lesson>>{
                     override fun onFailure(call: Call<List<Lesson>>, t: Throwable) {
                         Log.d("retrofit", t.message)
                     }
@@ -72,7 +72,7 @@ class MyLessonsFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
                     }
                 })
             } else{
-                RetrofitClient.lessonService!!.getFreeLessonsAsStudent(22).enqueue(object : Callback<List<Lesson>>{
+                RetrofitClient.lessonService!!.getFreeLessonsAsStudent((activity as Drawer).userId).enqueue(object : Callback<List<Lesson>>{
                     override fun onFailure(call: Call<List<Lesson>>, t: Throwable) {
                         Log.d("retrofit", t.message)
                     }
@@ -96,7 +96,7 @@ class MyLessonsFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
 
         btBookedLessons.setOnClickListener {
             selectButton(it)
-            RetrofitClient.lessonService!!.getBookedLessons(22).enqueue(object : Callback<List<Lesson>>{
+            RetrofitClient.lessonService!!.getBookedLessons((activity as Drawer).userId).enqueue(object : Callback<List<Lesson>>{
                 override fun onFailure(call: Call<List<Lesson>>, t: Throwable) {
                     Log.d("retrofit", t.message)
                 }
@@ -120,7 +120,7 @@ class MyLessonsFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
             selectButton(it)
             Log.d("retrofit", swAsTeacher.isChecked.toString())
             if(swAsTeacher.isChecked){
-                RetrofitClient.lessonService!!.getFreeLessonsAsTeacher(22).enqueue(object : Callback<List<Lesson>>{
+                RetrofitClient.lessonService!!.getFreeLessonsAsTeacher((activity as Drawer).userId).enqueue(object : Callback<List<Lesson>>{
                     override fun onFailure(call: Call<List<Lesson>>, t: Throwable) {
                         Log.d("retrofit", t.message)
                     }
@@ -139,7 +139,7 @@ class MyLessonsFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
                     }
                 })
             } else{
-                RetrofitClient.lessonService!!.getFreeLessonsAsStudent(22).enqueue(object : Callback<List<Lesson>>{
+                RetrofitClient.lessonService!!.getFreeLessonsAsStudent((activity as Drawer).userId).enqueue(object : Callback<List<Lesson>>{
                     override fun onFailure(call: Call<List<Lesson>>, t: Throwable) {
                         Log.d("retrofit", t.message)
                     }
@@ -162,7 +162,7 @@ class MyLessonsFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
         }
         btFinishedLessons.setOnClickListener {
             selectButton(it)
-            RetrofitClient.lessonService!!.getFinishedLessons(22).enqueue(object : Callback<List<Lesson>>{
+            RetrofitClient.lessonService!!.getFinishedLessons((activity as Drawer).userId).enqueue(object : Callback<List<Lesson>>{
                 override fun onFailure(call: Call<List<Lesson>>, t: Throwable) {
                     Log.d("retrofit", t.message)
                 }
@@ -250,7 +250,15 @@ class MyLessonsFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
                 })
                 Toast.makeText(activity, "Bokking cancelled", Toast.LENGTH_LONG).show()
             }
-            btFinishedLessons -> Toast.makeText(activity, "Long click to add rate!", Toast.LENGTH_LONG).show()
+            btFinishedLessons -> {
+                var ratedId : Int
+                if(lesson.teacherId.equals(22)){
+                    ratedId = lesson.studentId
+                }else ratedId = lesson.teacherId
+                val dialog = AddRateFragment(activity as Activity, ratedId ,lesson.id, lesson.topicName)
+                dialog.show()
+                Toast.makeText(activity, "Long click to add rate!", Toast.LENGTH_LONG).show()
+            }
             btFreeLessons -> {
                 RetrofitClient.lessonService!!.cancelLesson(lesson.id, 22).enqueue(object : Callback<Void>{
                     override fun onFailure(call: Call<Void>, t: Throwable) {

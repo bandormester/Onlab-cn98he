@@ -1,5 +1,6 @@
 package hu.bme.aut.android.easylearner.ui.login
 
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -61,6 +62,8 @@ class RegPhotoFragment : Fragment() {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     Log.d("retrofit", response.message())
                     Log.d("retrofit",response.code().toString())
+                    val intent = Intent(activity, LoginActivity::class.java)
+                    startActivity(intent)
                 }
 
             })

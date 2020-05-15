@@ -29,26 +29,26 @@ public lateinit var retroTest : RetroTest
 
         button.setOnClickListener {
 
-            //val intent = Intent(this, LoginActivity::class.java)
-            //startActivity(intent)
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
 
-            RetrofitClient.buildLessonService()
-            RetrofitClient.lessonService!!.getLessonsAsTeacher().enqueue(object :
-                Callback<List<Lesson>> {
-                override fun onFailure(call: Call<List<Lesson>>, t: Throwable) {
-                    Log.d("retrofit",t.message)
-                }
-
-                override fun onResponse(call: Call<List<Lesson>>, response: Response<List<Lesson>>) {
-                    Log.d("retrofit", response.code().toString())
-                    Log.d("retrofit",response.message())
-
-                    val lessonList = response.body()
-                    if (lessonList != null) {
-                        setupRecyclerView(lessonList)
-                    }
-                }
-            })
+           // RetrofitClient.buildLessonService()
+           // RetrofitClient.lessonService!!.getLessonsAsTeacher().enqueue(object :
+           //     Callback<List<Lesson>> {
+           //     override fun onFailure(call: Call<List<Lesson>>, t: Throwable) {
+           //         Log.d("retrofit",t.message)
+           //     }
+//
+           //     override fun onResponse(call: Call<List<Lesson>>, response: Response<List<Lesson>>) {
+           //         Log.d("retrofit", response.code().toString())
+           //         Log.d("retrofit",response.message())
+//
+           //         val lessonList = response.body()
+           //         if (lessonList != null) {
+           //             setupRecyclerView(lessonList)
+           //         }
+           //     }
+           // })
 
 
         }

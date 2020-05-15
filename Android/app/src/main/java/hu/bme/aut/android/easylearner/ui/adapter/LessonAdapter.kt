@@ -65,10 +65,10 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
 
         val glideUrl = GlideUrl(picUrl)
         val option = RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
-        //Glide.with(this.context)
-        //    .load(glideUrl)
-        //    .apply(option)
-        //    .into(holder.ivTeacherPic)
+        Glide.with(this.context)
+            .load(glideUrl)
+            .apply(option)
+            .into(holder.ivTeacherPic)
         holder.tvLevel.text = lesson.levelName
         holder.tvTopic.text = lesson.topicName
         holder.tvStartDate.text = date.year.toString()+"-"+(date.month+1).toString()+"-"+date.date.toString()+" / "+date.hours.toString()+":"+date.minutes.toString() //TODO
@@ -106,7 +106,6 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
                 //}
 
             }
-
         })
     }
 

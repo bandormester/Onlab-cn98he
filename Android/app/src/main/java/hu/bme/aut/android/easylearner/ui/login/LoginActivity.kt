@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.Toast
 import hu.bme.aut.android.easylearner.R
 import hu.bme.aut.android.easylearner.retrofit.RetrofitClient
+import hu.bme.aut.android.easylearner.ui.Drawer
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,16 +26,20 @@ class LoginActivity : AppCompatActivity() {
             val codedpw = Base64.encodeToString(pw,Base64.NO_WRAP)
             val uname = etUsername.text.toString()
             RetrofitClient.buildLessonService()
-            RetrofitClient.lessonService!!.tryLogin(uname,codedpw).enqueue(object : Callback<String>{
-                override fun onFailure(call: Call<String>, t: Throwable) {
+            RetrofitClient.lessonService!!.tryLogin(uname,codedpw).enqueue(object : Callback<Int>{
+                override fun onFailure(call: Call<Int>, t: Throwable) {
                     Log.d("retrofit", t.message)
                 }
 
-                override fun onResponse(call: Call<String>, response: Response<String>) {
+                override fun onResponse(call: Call<Int>, response: Response<Int>) {
                     Log.d("retrofit", response.message())
                     Log.d("retrofit", response.code().toString())
-                    if(response.isSuccessful)
-                    Log.d("retrofit", response.body()?:"null")
+                    if(response.code()==200){
+                        val intent = Intent(this@LoginActivity, Drawer::class.java)
+                        intent.putExtra("userid", response.body())
+                        startActivity(intent)
+                    }
+                    Log.d("retrofit", response.body().toString())
                 }
 
             })

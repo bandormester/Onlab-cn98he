@@ -66,6 +66,7 @@ class TeachLessonFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
         btAddLesson.setOnClickListener {
             val intent = Intent(activity, AddLessonActivity::class.java)
             intent.putExtra("asTeacher", true)
+            intent.putExtra("userid", (activity as Drawer).userId)
             startActivityForResult(intent, 1)
         }
         super.onActivityCreated(savedInstanceState)

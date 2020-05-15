@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:padding="12dp"
+    android:background="@color/colorPrimary">
+
+    <TextView
+        android:id="@+id/tvRateKnow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/textbox_rounded_corner"
+        android:text="Knowledge: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRatePunc"
+        app:layout_constraintEnd_toStartOf="@+id/spRateKnow"/>
+
+    <Spinner
+        android:id="@+id/spRateKnow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorOrange"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRateKnow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvRateKnow"
+        app:layout_constraintTop_toTopOf="@+id/tvRateKnow" />
+
+    <TextView
+        android:id="@+id/tvRatePunc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/textbox_rounded_corner"
+        android:text="Punctiality: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/spRatePunc"/>
+
+    <Spinner
+        android:id="@+id/spRatePunc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorOrange"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRatePunc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvRatePunc"
+        app:layout_constraintTop_toTopOf="@+id/tvRatePunc" />
+
+    <TextView
+        android:id="@+id/tvRateComm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Communication: "
+        android:background="@drawable/textbox_rounded_corner"
+        app:layout_constraintEnd_toStartOf="@+id/spRateComm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRateKnow" />
+
+    <Spinner
+        android:id="@+id/spRateComm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRateComm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvRateComm"
+        app:layout_constraintTop_toTopOf="@+id/tvRateComm"
+        android:background="@color/colorOrange"/>
+
+    <EditText
+        android:id="@+id/etAddRate"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="20dp"
+        android:background="@color/colorOrange"
+        app:layout_constraintBottom_toTopOf="@+id/btAddRate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRateComm" />
+
+    <Button
+        android:id="@+id/btAddRate"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/roundend_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Rate!"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

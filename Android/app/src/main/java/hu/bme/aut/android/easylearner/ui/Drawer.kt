@@ -18,6 +18,7 @@ import retrofit2.Response
 
 class Drawer : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
+     public var userId : Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,7 @@ class Drawer : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListe
 
         setSupportActionBar(toolbar)
 
+        userId = intent.getIntExtra("userid", 1)
 
         val toggle : ActionBarDrawerToggle = ActionBarDrawerToggle(this, draw_layout, toolbar, R.string.nav_drawer_open, R.string.nav_drawer_close)
         draw_layout.addDrawerListener(toggle)
@@ -45,16 +47,9 @@ class Drawer : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListe
             R.id.nav_my_lessons -> supportFragmentManager.beginTransaction().replace(R.id.fragment_container, MyLessonsFragment()).commit()
             R.id.nav_my_profile -> {
                 RetrofitClient.buildLessonService()
-                RetrofitClient.lessonService!!.getProfileRating(1).enqueue(object :
-                    Callback<LearnerProfile> {
-                    override fun onFailure(call: Call<LearnerProfile>, t: Throwable) {
-                        Log.d("retrofit",t.message)
-                    }
-
-                    override fun onResponse(
-                        call: Call<LearnerProfile>,
-                        response: Response<LearnerProfile>
-                    ) {
+                RetrofitClient.lessonService!!.getProfileRating(userId).enqueue(object : Callback<LearnerProfile> {
+                    override fun onFailure(call: Call<LearnerProfile>, t: Throwable) { Log.d("retrofit",t.message) }
+                    override fun onResponse(call: Call<LearnerProfile>, response: Response<LearnerProfile>) {
                         Log.d("retrofit", response.code().toString())
                         Log.d("retrofit",response.message())
 
@@ -63,9 +58,7 @@ class Drawer : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListe
                             val dialog = MyProfileFragment(this@Drawer , learnerProfile)
                             dialog.show()
                         }
-
                     }
-
                 })
             }
         }

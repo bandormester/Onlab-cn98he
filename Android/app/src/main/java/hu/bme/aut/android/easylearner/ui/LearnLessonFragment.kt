@@ -99,6 +99,7 @@ class LearnLessonFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
         val intent = Intent(activity, LessonDetailsActivity::class.java)
         intent.putExtra("lesson", lesson)
         intent.putExtra("asTeacher", false)
+        intent.putExtra("userid", (activity as Drawer).userId)
         startActivity(intent)
         Toast.makeText(activity, "Lesson clicked "+lesson.teacherName, Toast.LENGTH_LONG).show()
     }

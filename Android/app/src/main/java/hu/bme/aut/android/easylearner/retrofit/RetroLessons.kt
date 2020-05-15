@@ -40,7 +40,7 @@ interface RetroLessons {
 
     @GET("/user/login")
     fun tryLogin(@Query("username") username: String,
-                 @Query("password") password: String) : Call<String>
+                 @Query("password") password: String) : Call<Int>
 
     @POST("/user/register")
     fun addLearner(@Body pic : RequestBody,
@@ -50,8 +50,12 @@ interface RetroLessons {
                    @Query("password") password : String) : Call<Void>
 
     @PUT("/lesson/book/student")
-    fun bookLessonAsTeacher(@Query("lessonId") lessonId : Int,
+    fun bookLessonAsStudent(@Query("lessonId") lessonId : Int,
                             @Query("studentId") studentId : Int) : Call<Void>
+
+    @PUT("/lesson/book/teacher")
+    fun bookLessonAsTeacher(@Query("lessonId") lessonId : Int,
+                            @Query("teacherId") studentId : Int) : Call<Void>
 
     @GET("/rating/{id}")
     fun getRating(@Path("id") id : Int) : Call<List<Rating>>
@@ -74,4 +78,13 @@ interface RetroLessons {
     @PUT("/lesson/cancel/{lessonId}")
     fun cancelLesson(@Path("lessonId") lessonId : Int,
                      @Query("cancellerId") cancellerId : Int) : Call<Void>
+
+    @POST("/rating/add")
+    fun addRating(@Query("lessonId") lessonId : Int,
+                  @Query("ratedId") ratedId : Int,
+                  @Query("topicName") topicName : String,
+                  @Query("comm") comm : Int,
+                  @Query("know") know : Int,
+                  @Query("punc") punc : Int,
+                  @Query("text") text : String) : Call<Void>
 }
