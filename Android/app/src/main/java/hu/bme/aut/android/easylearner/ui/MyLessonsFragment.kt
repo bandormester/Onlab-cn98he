@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,11 +42,57 @@ class MyLessonsFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
         recyclerMyLessons.layoutManager = LinearLayoutManager(activity!!.baseContext)
         RetrofitClient.buildLessonService()
         selectButton(btFreeLessons)
+        btFreeLessons.callOnClick()
         swAsTeacher.isSelected = false
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        swAsTeacher.callOnClick()
+
+        swAsTeacher.setOnCheckedChangeListener(){ compoundButton: CompoundButton, b: Boolean ->
+            if(swAsTeacher.isChecked){
+                RetrofitClient.lessonService!!.getFreeLessonsAsTeacher(22).enqueue(object : Callback<List<Lesson>>{
+                    override fun onFailure(call: Call<List<Lesson>>, t: Throwable) {
+                        Log.d("retrofit", t.message)
+                    }
+
+                    override fun onResponse(
+                        call: Call<List<Lesson>>,
+                        response: Response<List<Lesson>>
+                    ) {
+                        Log.d("retrofit", response.message())
+                        Log.d("retrofit", response.code().toString())
+
+                        val lessonList = response.body()
+                        if (lessonList != null) {
+                            setupRecyclerView(lessonList)
+                        }
+                    }
+                })
+            } else{
+                RetrofitClient.lessonService!!.getFreeLessonsAsStudent(22).enqueue(object : Callback<List<Lesson>>{
+                    override fun onFailure(call: Call<List<Lesson>>, t: Throwable) {
+                        Log.d("retrofit", t.message)
+                    }
+
+                    override fun onResponse(
+                        call: Call<List<Lesson>>,
+                        response: Response<List<Lesson>>
+                    ) {
+                        Log.d("retrofit", response.message())
+                        Log.d("retrofit", response.code().toString())
+
+                        val lessonList = response.body()
+                        if (lessonList != null) {
+                            setupRecyclerViewAsTeacher(lessonList)
+                        }
+                    }
+
+                })
+            }
+        }
 
         btBookedLessons.setOnClickListener {
             selectButton(it)
@@ -71,15 +118,83 @@ class MyLessonsFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
         }
         btFreeLessons.setOnClickListener {
             selectButton(it)
+            Log.d("retrofit", swAsTeacher.isChecked.toString())
+            if(swAsTeacher.isChecked){
+                RetrofitClient.lessonService!!.getFreeLessonsAsTeacher(22).enqueue(object : Callback<List<Lesson>>{
+                    override fun onFailure(call: Call<List<Lesson>>, t: Throwable) {
+                        Log.d("retrofit", t.message)
+                    }
+
+                    override fun onResponse(
+                        call: Call<List<Lesson>>,
+                        response: Response<List<Lesson>>
+                    ) {
+                        Log.d("retrofit", response.message())
+                        Log.d("retrofit", response.code().toString())
+
+                        val lessonList = response.body()
+                        if (lessonList != null) {
+                            setupRecyclerView(lessonList)
+                        }
+                    }
+                })
+            } else{
+                RetrofitClient.lessonService!!.getFreeLessonsAsStudent(22).enqueue(object : Callback<List<Lesson>>{
+                    override fun onFailure(call: Call<List<Lesson>>, t: Throwable) {
+                        Log.d("retrofit", t.message)
+                    }
+
+                    override fun onResponse(
+                        call: Call<List<Lesson>>,
+                        response: Response<List<Lesson>>
+                    ) {
+                        Log.d("retrofit", response.message())
+                        Log.d("retrofit", response.code().toString())
+
+                        val lessonList = response.body()
+                        if (lessonList != null) {
+                            setupRecyclerViewAsTeacher(lessonList)
+                        }
+                    }
+
+                })
+            }
         }
         btFinishedLessons.setOnClickListener {
             selectButton(it)
+            RetrofitClient.lessonService!!.getFinishedLessons(22).enqueue(object : Callback<List<Lesson>>{
+                override fun onFailure(call: Call<List<Lesson>>, t: Throwable) {
+                    Log.d("retrofit", t.message)
+                }
+
+                override fun onResponse(
+                    call: Call<List<Lesson>>,
+                    response: Response<List<Lesson>>
+                ) {
+                    Log.d("retrofit", response.message())
+                    Log.d("retrofit", response.code().toString())
+
+                    val lessonList = response.body()
+                    if (lessonList != null) {
+                        setupRecyclerView(lessonList)
+                    }
+                }
+
+            })
         }
     }
 
     fun setupRecyclerView(list : List<Lesson>){
         adapter.clear()
         adapter.asTeacher = false
+        adapter.addLessonList(list)
+        recyclerMyLessons.adapter = adapter
+        adapter.listener = this
+    }
+
+    fun setupRecyclerViewAsTeacher(list : List<Lesson>){
+        adapter.clear()
+        adapter.asTeacher = true
         adapter.addLessonList(list)
         recyclerMyLessons.adapter = adapter
         adapter.listener = this
@@ -136,7 +251,21 @@ class MyLessonsFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
                 Toast.makeText(activity, "Bokking cancelled", Toast.LENGTH_LONG).show()
             }
             btFinishedLessons -> Toast.makeText(activity, "Long click to add rate!", Toast.LENGTH_LONG).show()
-            btFreeLessons -> Toast.makeText(activity, "Long click to cancel lesson!", Toast.LENGTH_LONG).show()
+            btFreeLessons -> {
+                RetrofitClient.lessonService!!.cancelLesson(lesson.id, 22).enqueue(object : Callback<Void>{
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                        Log.d("retrofit", t.message)
+                    }
+
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                        Log.d("retrofit", response.code().toString())
+                        Log.d("retrofit", response.message())
+                    }
+
+                })
+
+                Toast.makeText(activity, "Long click to cancel lesson!", Toast.LENGTH_LONG).show()
+            }
         }
     }
 

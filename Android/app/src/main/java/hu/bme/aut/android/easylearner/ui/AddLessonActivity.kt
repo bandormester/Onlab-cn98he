@@ -135,7 +135,7 @@ class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
 
             RetrofitClient.buildLessonService()
             if(asTeacher){
-                RetrofitClient.lessonService!!.addLessonAsTeacher(1,
+                RetrofitClient.lessonService!!.addLessonAsTeacher(22,
                     tvInfos.text.toString(),
                     chosenDate.time,
                     Integer.parseInt(etPaymentValue.text.toString()),
@@ -155,7 +155,7 @@ class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
 
                 })
             } else{
-                RetrofitClient.lessonService!!.addLessonAsStudent(1,
+                RetrofitClient.lessonService!!.addLessonAsStudent(22,
                     tvInfos.text.toString(),
                     chosenDate.time,
                     Integer.parseInt(etPaymentValue.text.toString()),

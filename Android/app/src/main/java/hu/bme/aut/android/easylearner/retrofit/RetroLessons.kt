@@ -62,6 +62,15 @@ interface RetroLessons {
     @GET("/lesson/my/booked/{id}")
     fun getBookedLessons(@Path("id") id : Int) : Call<List<Lesson>>
 
+    @GET("/lesson/my/finished/{id}")
+    fun getFinishedLessons(@Path("id") id : Int) : Call<List<Lesson>>
+
+    @GET("/lesson/my/free/student/{id}")
+    fun getFreeLessonsAsStudent(@Path("id") id : Int) : Call<List<Lesson>>
+
+    @GET("/lesson/my/free/teacher/{id}")
+    fun getFreeLessonsAsTeacher(@Path("id") id : Int) : Call<List<Lesson>>
+
     @PUT("/lesson/cancel/{lessonId}")
     fun cancelLesson(@Path("lessonId") lessonId : Int,
                      @Query("cancellerId") cancellerId : Int) : Call<Void>
