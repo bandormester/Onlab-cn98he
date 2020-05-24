@@ -26,10 +26,7 @@ class LoginActivity : AppCompatActivity() {
             val codedpw = Base64.encodeToString(pw,Base64.NO_WRAP)
             val uname = etUsername.text.toString()
             RetrofitClient.buildLessonService()
-            RetrofitClient.lessonService!!.tryLogin(uname,codedpw).enqueue(object : Callback<Int>{
-                override fun onFailure(call: Call<Int>, t: Throwable) {
-                    Log.d("retrofit", t.message)
-                }
+            RetrofitClient.lessonService!!.tryLogin(uname,codedpw).enqueue(object : RetrofitClient.LearnerCallback<Int>{
 
                 override fun onResponse(call: Call<Int>, response: Response<Int>) {
                     Log.d("retrofit", response.message())

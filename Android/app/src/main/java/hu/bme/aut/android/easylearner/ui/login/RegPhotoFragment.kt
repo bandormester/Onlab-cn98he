@@ -54,10 +54,7 @@ class RegPhotoFragment : Fragment() {
 
             val requestBody = RequestBody.create(MediaType.parse("application/octet-stream"), image)
 
-            RetrofitClient.lessonService!!.addLearner(requestBody, learner.name, learner.idCardNumber, learner.username, learner.password).enqueue(object : Callback<Void>{
-                override fun onFailure(call: Call<Void>, t: Throwable) {
-                    Log.d("retrofit",t.message)
-                }
+            RetrofitClient.lessonService!!.addLearner(requestBody, learner.name, learner.idCardNumber, learner.username, learner.password).enqueue(object : RetrofitClient.LearnerCallback<Void>{
 
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     Log.d("retrofit", response.message())

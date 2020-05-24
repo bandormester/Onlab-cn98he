@@ -1,18 +1,10 @@
-package hu.bme.aut.android.easylearner.ui
+package hu.bme.aut.android.easylearner.ui.profile
 
 import android.app.Activity
 import android.app.Dialog
-import android.content.Context
-import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -21,16 +13,9 @@ import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.request.RequestOptions
 import hu.bme.aut.android.easylearner.R
 import hu.bme.aut.android.easylearner.model.LearnerProfile
-import hu.bme.aut.android.easylearner.model.Lesson
-import hu.bme.aut.android.easylearner.model.ProfileDetails
 import hu.bme.aut.android.easylearner.retrofit.RetrofitClient
-import hu.bme.aut.android.easylearner.ui.adapter.LessonAdapter
 import hu.bme.aut.android.easylearner.ui.adapter.RatingAdapter
-import kotlinx.android.synthetic.main.fragment_learn_lesson.*
 import kotlinx.android.synthetic.main.fragment_my_profile.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MyProfileFragment(activity : Activity, //var profileDetails = profileDetails
                         var learnerProfile: LearnerProfile
@@ -38,7 +23,7 @@ class MyProfileFragment(activity : Activity, //var profileDetails = profileDetai
 
 
     var myActivity = activity
-    var adapter = RatingAdapter(activity!!.baseContext)
+    var adapter = RatingAdapter(activity.baseContext)
 
 
     internal var recyclerView: RecyclerView? = null
@@ -59,12 +44,12 @@ class MyProfileFragment(activity : Activity, //var profileDetails = profileDetai
         tvProfileName.text = learnerProfile.fullName
         tvProfileUsername.text = learnerProfile.userName
 
-        val glideUrl = GlideUrl("http://10.0.2.2:8090/user/pic/"+learnerProfile.picUrl)
-        val option = RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
-        Glide.with(this.context)
-            .load(glideUrl)
-            .apply(option)
-            .into(ivProfilePicture)
+      val glideUrl = GlideUrl("http://10.0.2.2:8090/user/pic/"+learnerProfile.picUrl)
+      val option = RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
+      Glide.with(this.context)
+          .load(glideUrl)
+          .apply(option)
+          .into(ivProfilePicture)
 
         recyclerView = recyclerMyProfile
         mLayoutManager = LinearLayoutManager(myActivity)

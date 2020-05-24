@@ -1,4 +1,4 @@
-package hu.bme.aut.android.easylearner.ui
+package hu.bme.aut.android.easylearner.ui.profile
 
 import android.app.Activity
 import android.app.Dialog
@@ -37,14 +37,7 @@ class AddRateFragment(act : Activity, var ratedId : Int, var lessonId : Int, var
                 spRateComm.selectedItem as Int,
                 spRateKnow.selectedItem as Int,
                 spRatePunc.selectedItem as Int,
-                etAddRate.text.toString()).enqueue(object : Callback<Void> {
-                override fun onFailure(call: Call<Void>, t: Throwable) {
-                    Log.d("retrofit",t.message)
-                }
-
-                override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                    Log.d("retrofit", response.code().toString())
-                }
+                etAddRate.text.toString()).enqueue(object : RetrofitClient.LearnerCallback<Void> {
             })
             dismiss()
         }

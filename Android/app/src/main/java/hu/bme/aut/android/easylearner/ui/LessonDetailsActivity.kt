@@ -1,6 +1,5 @@
 package hu.bme.aut.android.easylearner.ui
 
-import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,10 +11,9 @@ import hu.bme.aut.android.easylearner.R
 import hu.bme.aut.android.easylearner.model.LearnerProfile
 import hu.bme.aut.android.easylearner.model.Lesson
 import hu.bme.aut.android.easylearner.retrofit.RetrofitClient
-import kotlinx.android.synthetic.main.activity_add_lesson.*
+import hu.bme.aut.android.easylearner.ui.profile.MyProfileFragment
 import kotlinx.android.synthetic.main.activity_lesson_details.*
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -38,24 +36,24 @@ class LessonDetailsActivity : AppCompatActivity() {
             tvDetailsName.text = lesson.teacherName
             ownerId = lesson.teacherId
 
-            val picUrl = "http://10.0.2.2:8090/user/pic/"+lesson.teacherName.hashCode()
-            val glideUrl = GlideUrl(picUrl)
-            val option = RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
-            Glide.with(this)
-                .load(glideUrl)
-                .apply(option)
-                .into(ivDetailsProfile)
+          val picUrl = "http://10.0.2.2:8090/user/pic/"+lesson.teacherName.hashCode()
+          val glideUrl = GlideUrl(picUrl)
+          val option = RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
+          Glide.with(this)
+              .load(glideUrl)
+              .apply(option)
+              .into(ivDetailsProfile)
         }else{
             tvDetailsName.text = lesson.studentName
             ownerId = lesson.studentId
 
-            val picUrl = "http://10.0.2.2:8090/user/pic/"+lesson.studentName.hashCode()
-            val glideUrl = GlideUrl(picUrl)
-            val option = RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
-            Glide.with(this)
-                .load(glideUrl)
-                .apply(option)
-                .into(ivDetailsProfile)
+      val picUrl = "http://10.0.2.2:8090/user/pic/"+lesson.studentName.hashCode()
+      val glideUrl = GlideUrl(picUrl)
+      val option = RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
+      Glide.with(this)
+          .load(glideUrl)
+          .apply(option)
+          .into(ivDetailsProfile)
         }
 
         tvDetailsLevel.text = lesson.levelName
@@ -77,10 +75,7 @@ class LessonDetailsActivity : AppCompatActivity() {
         }
 
         RetrofitClient.buildLessonService()
-        RetrofitClient.lessonService!!.getProfileRating(ownerId).enqueue(object : Callback<LearnerProfile>{
-            override fun onFailure(call: Call<LearnerProfile>, t: Throwable) {
-                Log.d("retrofit",t.message)
-            }
+        RetrofitClient.lessonService!!.getProfileRating(ownerId).enqueue(object : RetrofitClient.LearnerCallback<LearnerProfile>{
 
             override fun onResponse(
                 call: Call<LearnerProfile>,
@@ -97,10 +92,6 @@ class LessonDetailsActivity : AppCompatActivity() {
                     dec = BigDecimal(rating).setScale(2, RoundingMode.HALF_EVEN)
                 }
                 tvDetailsRating.text = dec.toString()
-                //if(learnerProfile!=null){
-                //    val dialog = MyProfileFragment(this@LessonDetailsActivity, learnerProfile!!)
-                //    dialog.show()
-                //}
 
             }
 
@@ -117,45 +108,25 @@ class LessonDetailsActivity : AppCompatActivity() {
             if(asTeacher) {
                 RetrofitClient.lessonService!!.bookLessonAsTeacher(
                     lesson.id,
-                    //user.id
-                    userid  //TODO
-                ).enqueue(object : Callback<Void> {
-                    override fun onFailure(call: Call<Void>, t: Throwable) {
-                        Log.d("retrofit", t.message)
-                        Log.d("retrofit", t.localizedMessage)
-                        Log.d("retrofit", t.cause.toString())
-                    }
-
-                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                        Log.d("retrofit", response.code().toString())
-                        Log.d("retrofit", response.message())
-                    }
-
+                    userid
+                ).enqueue(object : RetrofitClient.LearnerCallback<Void> {
                 })
             }else {
                 RetrofitClient.lessonService!!.bookLessonAsStudent(
                     lesson.id,
-                    //user.id
-                    userid  //TODO
-                ).enqueue(object : Callback<Void> {
-                    override fun onFailure(call: Call<Void>, t: Throwable) {
-                        Log.d("retrofit", t.message)
-                        Log.d("retrofit", t.localizedMessage)
-                        Log.d("retrofit", t.cause.toString())
-                    }
-
-                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                        Log.d("retrofit", response.code().toString())
-                        Log.d("retrofit", response.message())
-                    }
-
+                    userid
+                ).enqueue(object : RetrofitClient.LearnerCallback<Void> {
                 })
             }
         }
 
         ivDetailsProfile.setOnClickListener{
             if(learnerProfile!=null){
-                val dialog = MyProfileFragment(this@LessonDetailsActivity, learnerProfile!!)
+                val dialog =
+                    MyProfileFragment(
+                        this@LessonDetailsActivity,
+                        learnerProfile!!
+                    )
                 dialog.show()
             }
         }

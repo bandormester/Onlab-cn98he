@@ -43,10 +43,7 @@ class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
         asTeacher = intent.getBooleanExtra("asTeacher", true)
 
         RetrofitClient.buildLessonService()
-        RetrofitClient.lessonService!!.getLevels().enqueue(object : Callback<List<Level>>{
-            override fun onFailure(call: Call<List<Level>>, t: Throwable) {
-                Log.d("retrofit",t.message)
-            }
+        RetrofitClient.lessonService!!.getLevels().enqueue(object : RetrofitClient.LearnerCallback<List<Level>>{
 
             override fun onResponse(call: Call<List<Level>>, response: Response<List<Level>>) {
                 Log.d("retrofit", response.code().toString())
@@ -71,17 +68,11 @@ class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
                             "GRADUATED" -> ivLevel.setImageResource(R.mipmap.ic_graduated)
                         }
                     }
-
                 }
             }
-
         })
 
-        RetrofitClient.lessonService!!.getTopics().enqueue(object : Callback<List<Topic>>{
-            override fun onFailure(call: Call<List<Topic>>, t: Throwable) {
-                Log.d("retrofit",t.message)
-            }
-
+        RetrofitClient.lessonService!!.getTopics().enqueue(object : RetrofitClient.LearnerCallback<List<Topic>>{
             override fun onResponse(call: Call<List<Topic>>, response: Response<List<Topic>>) {
                 Log.d("retrofit", response.code().toString())
                 topics = response.body()!!
@@ -108,10 +99,8 @@ class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
                             "BIOLOGY" -> ivTopic.setImageResource(R.mipmap.ic_biology)
                         }
                     }
-
                 }
             }
-
         })
 
 
@@ -141,18 +130,7 @@ class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
                     Integer.parseInt(etPaymentValue.text.toString()),
                     levels[spLevel.selectedItemPosition].id,
                     topics[spTopic.selectedItemPosition].id
-                ).enqueue(object : Callback<Void>{
-                    override fun onFailure(call: Call<Void>, t: Throwable) {
-                        Log.d("retrofit", t.message)
-                        Log.d("retrofit", t.localizedMessage)
-                        Log.d("retrofit", t.cause.toString())
-                    }
-
-                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                        Log.d("retrofit", response.code().toString())
-                        Log.d("retrofit",response.message())
-                    }
-
+                ).enqueue(object : RetrofitClient.LearnerCallback<Void>{
                 })
             } else{
                 RetrofitClient.lessonService!!.addLessonAsStudent(22,
@@ -161,18 +139,7 @@ class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
                     Integer.parseInt(etPaymentValue.text.toString()),
                     levels[spLevel.selectedItemPosition].id,
                     topics[spTopic.selectedItemPosition].id
-                ).enqueue(object : Callback<Void>{
-                    override fun onFailure(call: Call<Void>, t: Throwable) {
-                        Log.d("retrofit", t.message)
-                        Log.d("retrofit", t.localizedMessage)
-                        Log.d("retrofit", t.cause.toString())
-                    }
-
-                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                        Log.d("retrofit", response.code().toString())
-                        Log.d("retrofit",response.message())
-                    }
-
+                ).enqueue(object : RetrofitClient.LearnerCallback<Void>{
                 })
             }
             val returnIntent = Intent()

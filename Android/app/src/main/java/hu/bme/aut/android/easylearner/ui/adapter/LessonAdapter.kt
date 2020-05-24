@@ -1,26 +1,24 @@
 package hu.bme.aut.android.easylearner.ui.adapter
 
 import android.content.Context
-import android.text.Layout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.model.GlideUrl
-import com.bumptech.glide.load.model.LazyHeaders
 import com.bumptech.glide.request.RequestOptions
 import hu.bme.aut.android.easylearner.R
 import hu.bme.aut.android.easylearner.model.LearnerProfile
 import hu.bme.aut.android.easylearner.model.Lesson
 import hu.bme.aut.android.easylearner.retrofit.RetrofitClient
-import kotlinx.android.synthetic.main.activity_lesson_details.*
 import kotlinx.android.synthetic.main.row_lesson.view.*
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -28,7 +26,7 @@ import java.util.*
 
 class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHolder>(){
 
-    val lessons : MutableList<Lesson> = mutableListOf()
+    private val lessons : MutableList<Lesson> = mutableListOf()
     var listener : OnLessonClickedListener? = null
     val context : Context = con
     var asTeacher : Boolean = false
@@ -65,13 +63,13 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
 
         val glideUrl = GlideUrl(picUrl)
         val option = RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
-        Glide.with(this.context)
-            .load(glideUrl)
-            .apply(option)
-            .into(holder.ivTeacherPic)
+       Glide.with(this.context)
+           .load(glideUrl)
+           .apply(option)
+           .into(holder.ivTeacherPic)
         holder.tvLevel.text = lesson.levelName
         holder.tvTopic.text = lesson.topicName
-        holder.tvStartDate.text = date.year.toString()+"-"+(date.month+1).toString()+"-"+date.date.toString()+" / "+date.hours.toString()+":"+date.minutes.toString() //TODO
+        holder.tvStartDate.text = date.year.toString()+"-"+(date.month+1).toString()+"-"+date.date.toString()+" / "+date.hours.toString()+":"+date.minutes.toString()
         Log.d("datum", lesson.startTime.toString())
         val paymentText = "${lesson.payment} Ft"
         holder.tvPayment.text = paymentText
@@ -80,10 +78,7 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
 
         RetrofitClient.buildLessonService()
         RetrofitClient.lessonService!!.getProfileRating(ownerId).enqueue(object :
-            Callback<LearnerProfile> {
-            override fun onFailure(call: Call<LearnerProfile>, t: Throwable) {
-                Log.d("retrofit",t.message)
-            }
+            RetrofitClient.LearnerCallback<LearnerProfile> {
 
             override fun onResponse(
                 call: Call<LearnerProfile>,
@@ -96,14 +91,11 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
                 var dec : BigDecimal? = null
                 if(learnerProfile!=null) {
                     val rating =
-                        (((learnerProfile!!.communication + learnerProfile!!.knowledge + learnerProfile!!.punctuality)/3)*10)/10.0
+                        (((learnerProfile.communication + learnerProfile.knowledge + learnerProfile.punctuality)/3)*10)/10.0
                     dec = BigDecimal(rating).setScale(1, RoundingMode.HALF_EVEN)
                 }
                 holder.tvRating.text = dec.toString()
-                //if(learnerProfile!=null){
-                //    val dialog = MyProfileFragment(this@LessonDetailsActivity, learnerProfile!!)
-                //    dialog.show()
-                //}
+
 
             }
         })
@@ -127,15 +119,15 @@ class LessonAdapter(con : Context) : RecyclerView.Adapter<LessonAdapter.LessonHo
         var lesson : Lesson? = null
         var position : Int? = null
 
-        val tvTeacherName = lessonView.tvName
-        val ivTeacherPic = lessonView.ivTeacherPic
-        val tvLevel = lessonView.tvLevel
-        val tvTopic = lessonView.tvTopic
-        val tvStartDate = lessonView.tvStartDate
-        val tvPayment = lessonView.tvPayment
-        val tvRating = lessonView.tvRating
-        val ivRating = lessonView.ivRating
-        val tvInfo = lessonView.tvInfo
+        val tvTeacherName: TextView = lessonView.tvName
+        val ivTeacherPic : ImageView = lessonView.ivTeacherPic
+        val tvLevel: TextView = lessonView.tvLevel
+        val tvTopic: TextView = lessonView.tvTopic
+        val tvStartDate: TextView = lessonView.tvStartDate
+        val tvPayment: TextView = lessonView.tvPayment
+        val tvRating: TextView = lessonView.tvRating
+        val ivRating: ImageView = lessonView.ivRating
+        val tvInfo: TextView = lessonView.tvInfo
 
         init{
             lessonView.setOnClickListener{

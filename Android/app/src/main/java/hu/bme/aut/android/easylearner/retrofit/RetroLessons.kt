@@ -11,10 +11,10 @@ interface RetroLessons {
     fun getLessons() : Call<List<Lesson>>
 
     @GET("/lesson/names/student")
-    fun getLessonsAsStudent() : Call<List<Lesson>>
+    fun getLessonsAsStudent(@Query("studentId") studentId: Int) : Call<List<Lesson>>
 
     @GET("/lesson/names/teacher")
-    fun getLessonsAsTeacher() : Call<List<Lesson>>
+    fun getLessonsAsTeacher(@Query("teacherId") teacherId: Int) : Call<List<Lesson>>
 
     @GET("/level")
     fun getLevels() : Call<List<Level>>
