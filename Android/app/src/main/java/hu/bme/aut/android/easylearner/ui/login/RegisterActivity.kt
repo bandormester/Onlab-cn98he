@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.util.Base64
 import hu.bme.aut.android.easylearner.R
 import hu.bme.aut.android.easylearner.model.Learner
-import hu.bme.aut.android.easylearner.ui.LearnLessonFragment
 import kotlinx.android.synthetic.main.fragment_reg_infos.*
 
 class RegisterActivity : AppCompatActivity() {

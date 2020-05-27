@@ -1,4 +1,4 @@
-package hu.bme.aut.android.easylearner.ui
+package hu.bme.aut.android.easylearner.ui.lesson
 
 import android.app.Activity
 import android.app.DatePickerDialog
@@ -25,6 +25,7 @@ import java.util.*
 class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
 
     private var asTeacher = true
+    private var userId = 0
     private lateinit var levels : List<Level>
     private lateinit var topics : List<Topic>
     private var levelNames = mutableListOf<String>()
@@ -41,6 +42,7 @@ class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
         setContentView(R.layout.activity_add_lesson)
 
         asTeacher = intent.getBooleanExtra("asTeacher", true)
+        userId = intent.getIntExtra("userId", 0)
 
         RetrofitClient.buildLessonService()
         RetrofitClient.lessonService!!.getLevels().enqueue(object : RetrofitClient.LearnerCallback<List<Level>>{
@@ -124,7 +126,7 @@ class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
 
             RetrofitClient.buildLessonService()
             if(asTeacher){
-                RetrofitClient.lessonService!!.addLessonAsTeacher(22,
+                RetrofitClient.lessonService!!.addLessonAsTeacher(userId,
                     tvInfos.text.toString(),
                     chosenDate.time,
                     Integer.parseInt(etPaymentValue.text.toString()),
@@ -133,7 +135,7 @@ class AddLessonActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListene
                 ).enqueue(object : RetrofitClient.LearnerCallback<Void>{
                 })
             } else{
-                RetrofitClient.lessonService!!.addLessonAsStudent(22,
+                RetrofitClient.lessonService!!.addLessonAsStudent(userId,
                     tvInfos.text.toString(),
                     chosenDate.time,
                     Integer.parseInt(etPaymentValue.text.toString()),

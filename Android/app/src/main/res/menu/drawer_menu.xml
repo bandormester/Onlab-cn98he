@@ -4,47 +4,47 @@
     tools:showIn="navigation_view">
 
 
-        <item android:title="Learn">
+        <item android:title="@string/learn">
             <menu>
                 <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_learn_lesson"
                     android:icon="@drawable/ic_library_books_black_24dp"
-                    android:title="Lessons" />
+                    android:title="@string/lessons" />
                 <item
                     android:id="@+id/nav_learn_lecture"
                     android:icon="@drawable/ic_group_black_24dp"
-                    android:title="Lectures" />
+                    android:title="@string/lectures" />
                 </group>
             </menu>
         </item>
 
-        <item android:title="Teach">
+        <item android:title="@string/teach">
             <menu>
                 <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_teach_lesson"
                     android:icon="@drawable/ic_brush_black_24dp"
-                    android:title="Lessons" />
+                    android:title="@string/lessons" />
                 <item
                     android:id="@+id/nav_teach_lecture"
                     android:icon="@drawable/ic_group_black_24dp"
-                    android:title="Lectures" />
+                    android:title="@string/lectures" />
                 </group>
             </menu>
         </item>
 
-        <item android:title="User">
+        <item android:title="@string/user">
             <menu>
                 <group android:checkableBehavior="single">
                     <item
                         android:id="@+id/nav_my_profile"
                         android:icon="@drawable/ic_child_care_black_24dp"
-                        android:title="My Profile" />
+                        android:title="@string/my_profile" />
                     <item
                         android:id="@+id/nav_my_lessons"
                         android:icon="@drawable/ic_business_center_black_24dp"
-                        android:title="My Lessons" />
+                        android:title="@string/my_lessons" />
                 </group>
             </menu>
         </item>

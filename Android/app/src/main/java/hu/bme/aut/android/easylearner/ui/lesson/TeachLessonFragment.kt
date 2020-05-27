@@ -1,4 +1,4 @@
-package hu.bme.aut.android.easylearner.ui
+package hu.bme.aut.android.easylearner.ui.lesson
 
 import android.app.Activity
 import android.content.Intent
@@ -14,15 +14,14 @@ import hu.bme.aut.android.easylearner.R
 import hu.bme.aut.android.easylearner.model.LearnerProfile
 import hu.bme.aut.android.easylearner.model.Lesson
 import hu.bme.aut.android.easylearner.retrofit.RetrofitClient
+import hu.bme.aut.android.easylearner.ui.Drawer
 import hu.bme.aut.android.easylearner.ui.adapter.LessonAdapter
-import hu.bme.aut.android.easylearner.ui.adapter.RatingAdapter
 import hu.bme.aut.android.easylearner.ui.profile.MyProfileFragment
 import kotlinx.android.synthetic.main.fragment_learn_lesson.*
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
 
-class LearnLessonFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
+class TeachLessonFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
 
     private lateinit var adapter : LessonAdapter
 
@@ -38,7 +37,8 @@ class LearnLessonFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
         super.onStart()
 
         RetrofitClient.buildLessonService()
-        RetrofitClient.lessonService!!.getLessonsAsStudent((activity as Drawer).userId).enqueue(object : RetrofitClient.LearnerCallback<List<Lesson>>{
+        RetrofitClient.lessonService!!.getLessonsAsTeacher((activity as Drawer).userId).enqueue(object :
+            RetrofitClient.LearnerCallback<List<Lesson>> {
 
             override fun onResponse(call: Call<List<Lesson>>, response: Response<List<Lesson>>) {
                 Log.d("retrofit", response.code().toString())
@@ -55,11 +55,12 @@ class LearnLessonFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         adapter = LessonAdapter(activity!!.baseContext)
         recyclerLearnLesson.layoutManager = LinearLayoutManager(activity!!.baseContext)
-        btAddLesson.text = getString(R.string.learn_something_else)
+        btAddLesson.text = getString(R.string.teach_something_else)
 
         btAddLesson.setOnClickListener {
             val intent = Intent(activity, AddLessonActivity::class.java)
-            intent.putExtra("asTeacher", false)
+            intent.putExtra("asTeacher", true)
+            intent.putExtra("userId",(activity as Drawer).userId)
             startActivityForResult(intent, 1)
         }
         super.onActivityCreated(savedInstanceState)
@@ -67,7 +68,7 @@ class LearnLessonFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
 
     fun setupRecyclerView(list : List<Lesson>){
         adapter.clear()
-        adapter.asTeacher = false
+        adapter.asTeacher = true
         adapter.addLessonList(list)
         recyclerLearnLesson.adapter = adapter
         adapter.listener = this
@@ -87,8 +88,7 @@ class LearnLessonFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
     override fun onLessonSelected(lesson: Lesson, position: Int) {
         val intent = Intent(activity, LessonDetailsActivity::class.java)
         intent.putExtra("lesson", lesson)
-        intent.putExtra("asTeacher", false)
-        intent.putExtra("userid", (activity as Drawer).userId)
+        intent.putExtra("asTeacher", true)
         startActivity(intent)
         Toast.makeText(activity, "Lesson clicked "+lesson.teacherName, Toast.LENGTH_LONG).show()
     }
@@ -121,6 +121,4 @@ class LearnLessonFragment : Fragment(), LessonAdapter.OnLessonClickedListener {
     override fun onLessonLongClicked(lesson: Lesson, position: Int) {
         Log.d("click", "long clicked")
     }
-
-
 }

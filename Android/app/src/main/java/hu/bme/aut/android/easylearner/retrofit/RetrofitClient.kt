@@ -28,7 +28,7 @@ object RetrofitClient {
 
     interface LearnerCallback<T> : Callback<T>{
         override fun onFailure(call: Call<T>, t: Throwable) {
-            Log.d("retrofit", t.message)
+            Log.d("retrofit", t.message?:"Request failed")
         }
 
         override fun onResponse(call: Call<T>, response: Response<T>) {

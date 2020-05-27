@@ -10,11 +10,13 @@ import com.google.android.material.navigation.NavigationView
 import hu.bme.aut.android.easylearner.R
 import hu.bme.aut.android.easylearner.model.LearnerProfile
 import hu.bme.aut.android.easylearner.retrofit.RetrofitClient
+import hu.bme.aut.android.easylearner.ui.lecture.LearnLectureFragment
+import hu.bme.aut.android.easylearner.ui.lesson.LearnLessonFragment
+import hu.bme.aut.android.easylearner.ui.lesson.TeachLessonFragment
 import hu.bme.aut.android.easylearner.ui.profile.MyLessonsFragment
 import hu.bme.aut.android.easylearner.ui.profile.MyProfileFragment
 import kotlinx.android.synthetic.main.activity_drawer.*
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
 
 class Drawer : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
@@ -34,15 +36,23 @@ class Drawer : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListe
         nav_view.setNavigationItemSelectedListener(this)
 
         if(savedInstanceState == null){
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, LearnLessonFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
+            LearnLessonFragment()
+        ).commit()
         nav_view.setCheckedItem(R.id.nav_learn_lesson)}
     }
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when(p0.itemId){
-            R.id.nav_learn_lesson -> supportFragmentManager.beginTransaction().replace(R.id.fragment_container, LearnLessonFragment()).commit()
-            R.id.nav_learn_lecture -> supportFragmentManager.beginTransaction().replace(R.id.fragment_container, LearnLectureFragment()).commit()
-            R.id.nav_teach_lesson -> supportFragmentManager.beginTransaction().replace(R.id.fragment_container, TeachLessonFragment()).commit()
+            R.id.nav_learn_lesson -> supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
+                LearnLessonFragment()
+            ).commit()
+            R.id.nav_learn_lecture -> supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
+                LearnLectureFragment()
+            ).commit()
+            R.id.nav_teach_lesson -> supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
+                TeachLessonFragment()
+            ).commit()
             R.id.nav_my_lessons -> supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
                 MyLessonsFragment()
             ).commit()

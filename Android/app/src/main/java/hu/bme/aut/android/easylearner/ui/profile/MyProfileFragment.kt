@@ -29,6 +29,7 @@ class MyProfileFragment(activity : Activity, //var profileDetails = profileDetai
     internal var recyclerView: RecyclerView? = null
     private var mLayoutManager: RecyclerView.LayoutManager? = null
 
+
     override fun onCreate(
         savedInstanceState: Bundle?
     ){

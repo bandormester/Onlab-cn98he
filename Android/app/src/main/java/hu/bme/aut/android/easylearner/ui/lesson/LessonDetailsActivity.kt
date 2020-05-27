@@ -1,4 +1,4 @@
-package hu.bme.aut.android.easylearner.ui
+package hu.bme.aut.android.easylearner.ui.lesson
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -31,30 +31,24 @@ class LessonDetailsActivity : AppCompatActivity() {
         val lesson = intent.getSerializableExtra("lesson") as Lesson
         val asTeacher = intent.getBooleanExtra("asTeacher", false)
         val ownerId : Int
+        var picName : Int = 0
 
         if(!asTeacher){
             tvDetailsName.text = lesson.teacherName
             ownerId = lesson.teacherId
-
-          val picUrl = "http://10.0.2.2:8090/user/pic/"+lesson.teacherName.hashCode()
-          val glideUrl = GlideUrl(picUrl)
-          val option = RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
-          Glide.with(this)
-              .load(glideUrl)
-              .apply(option)
-              .into(ivDetailsProfile)
+            picName = lesson.teacherName.hashCode()
         }else{
             tvDetailsName.text = lesson.studentName
             ownerId = lesson.studentId
-
-      val picUrl = "http://10.0.2.2:8090/user/pic/"+lesson.studentName.hashCode()
-      val glideUrl = GlideUrl(picUrl)
-      val option = RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
-      Glide.with(this)
-          .load(glideUrl)
-          .apply(option)
-          .into(ivDetailsProfile)
+            picName = lesson.studentName.hashCode()
         }
+        val picUrl = "http://10.0.2.2:8090/user/pic/"+picName
+        val glideUrl = GlideUrl(picUrl)
+        val option = RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
+        Glide.with(this)
+            .load(glideUrl)
+            .apply(option)
+            .into(ivDetailsProfile)
 
         tvDetailsLevel.text = lesson.levelName
         Log.d("glide", "levelname:  "+lesson.levelName +"    "+ lesson.topicName)

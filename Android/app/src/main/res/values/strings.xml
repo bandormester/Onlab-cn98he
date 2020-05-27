@@ -22,4 +22,11 @@
     <string name="profile_communication">Communication: %.1f</string>
     <string name="profile_punctuality">Punctuality: %.1f</string>
     <string name="profile_knowledge">Knowledge: %.1f</string>
+    <string name="learn">Learn</string>
+    <string name="lessons">Lessons</string>
+    <string name="lectures">Lectures</string>
+    <string name="teach">Teach</string>
+    <string name="user">User</string>
+    <string name="my_profile">My Profile</string>
+    <string name="my_lessons">My Lessons</string>
 </resources>

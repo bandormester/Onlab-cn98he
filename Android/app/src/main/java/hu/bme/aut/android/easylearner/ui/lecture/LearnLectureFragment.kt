@@ -1,4 +1,4 @@
-package hu.bme.aut.android.easylearner.ui
+package hu.bme.aut.android.easylearner.ui.lecture
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,5 +16,4 @@ class LearnLectureFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_learn_lecture, container, false)
     }
-
 }

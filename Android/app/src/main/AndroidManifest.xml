@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.LessonDetailsActivity"></activity>
+        <activity android:name=".ui.lesson.LessonDetailsActivity"></activity>
         <activity android:name=".ui.login.RegisterActivity" />
         <activity android:name=".ui.login.LoginActivity" >
             <intent-filter>
@@ -20,12 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.AddLessonActivity" />
+        <activity android:name=".ui.lesson.AddLessonActivity" />
         <activity
             android:name=".ui.Drawer"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.MainActivity">
-        </activity>
     </application>
 
 </manifest>

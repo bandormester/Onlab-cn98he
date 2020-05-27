@@ -68,8 +68,11 @@ class RegPhotoFragment : Fragment() {
     }
 
     private fun askCameraPermission() {
-        if(ContextCompat.checkSelfPermission(activity!!.baseContext, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(activity!!, arrayOf<String>(android.Manifest.permission.CAMERA), 101)
+        if(ContextCompat.checkSelfPermission(activity!!.baseContext,
+                android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(activity!!,
+                arrayOf<String>(android.Manifest.permission.CAMERA),
+                101)
         }
         else{
             openCamera()
